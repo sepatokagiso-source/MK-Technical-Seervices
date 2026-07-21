@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | MK Technical Services</title>
+    <style>
+        .careers-tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid var(--border-subtle); }
+        .careers-tab { padding: 0.75rem 1.5rem; cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; transition: all 0.3s; }
+        .careers-tab.active { color: var(--primary-teal); border-bottom-color: var(--primary-teal); }
+        .job-form { max-width: 700px; }
+        .job-form input, .job-form textarea, .job-form select { width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border-subtle); border-radius: var(--radius-md); margin-bottom: 1rem; font-size: 1rem; }
+        .job-form textarea { min-height: 120px; resize: vertical; font-family: var(--font-body); }
+        .job-item { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem; background: white; border-radius: var(--radius-lg); margin-bottom: 1rem; border-left: 4px solid var(--primary-teal); box-shadow: var(--shadow-sm); }
+        .job-item h4 { margin-bottom: 0.25rem; color: var(--text-dark); }
+        .job-item p { color: var(--text-secondary); font-size: 0.9rem; margin: 0; }
+        .job-actions { display: flex; gap: 0.5rem; }
+        .btn-sm { padding: 0.5rem 1rem; font-size: 0.85rem; border-radius: var(--radius-md); border: none; cursor: pointer; font-weight: 600; }
+        .btn-edit { background: var(--primary-blue); color: white; }
+        .btn-delete { background: #dc3545; color: white; }
+        .application-list { margin-top: 1.5rem; }
+        .app-item { padding: 1rem; background: var(--bg-light); border-radius: var(--radius-md); margin-bottom: 0.75rem; border-left: 3px solid var(--primary-teal); }
+        .app-item strong { color: var(--text-dark); }
+        .app-item p { margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem; }
+    </style>
+    <meta name="description" content="Admin dashboard for managing quotes, clients, and service requests for MK Technical Services.">
+    <link rel="icon" href="/media/logo.png" type="image/png">
+    <link rel="canonical" href="https://www.mktechnicalservices.co.za/pages/admin.html">
+    <meta property="og:title" content="Admin Dashboard | MK Technical Services">
+    <meta property="og:description" content="Manage quotes, clients, and service requests.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mktechnicalservices.co.za/pages/admin.html">
+    <meta property="og:image" content="https://www.mktechnicalservices.co.za/media/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Admin Dashboard | MK Technical Services">
+    <meta name="twitter:description" content="Manage quotes, clients, and service requests.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/media/logo.png" alt="MK Technical Services" class="logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/pages/admin.html">Admin</a></li>
+                <li><a href="/pages/careers.html">Careers</a></li>
+                <li><a href="/pages/contact.html">Request Quote</a></li>
+                <li><a href="#" id="logoutBtn" class="btn btn-secondary" style="padding: 0.5rem 1.5rem;">Logout</a></li>
+            </ul>
+            <button type="button" class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="main" class="section" style="padding-top: 120px;">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <h1>Admin Dashboard</h1>
+                <p style="color: var(--text-secondary);">Manage quotes, appointments, and system settings</p>
+            </div>
+
+            <div class="grid grid-3" style="margin-bottom: 3rem;">
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: var(--primary-teal); margin-bottom: 0.5rem;">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 id="totalQuotes">0</h3>
+                    <p style="color: var(--text-secondary);">Total Quotes</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 0.5rem;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 id="pendingQuotes">0</h3>
+                    <p style="color: var(--text-secondary);">Pending Quotes</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: var(--cta-orange); margin-bottom: 0.5rem;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 id="totalUsers">0</h3>
+                    <p style="color: var(--text-secondary);">Total Users</p>
+                </div>
+            </div>
+
+            <!-- Careers Management -->
+            <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 1.5rem;"><i class="fas fa-briefcase"></i> Careers Management</h2>
+                <div class="careers-tabs">
+                    <div class="careers-tab active" data-tab="viewJobs">Job Postings</div>
+                    <div class="careers-tab" data-tab="addJob">Add / Edit Job</div>
+                    <div class="careers-tab" data-tab="viewApplications">Applications</div>
+                </div>
+
+                <div id="viewJobsPanel" class="careers-panel">
+                    <div id="adminJobsList"></div>
+                    <p id="noAdminJobs" class="text-center" style="color: var(--text-secondary); display: none;">No job postings yet.</p>
+                </div>
+
+                <div id="addJobPanel" class="careers-panel" style="display: none;">
+                    <form id="jobForm" class="job-form">
+                        <input type="hidden" id="jobId">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Job Title</label>
+                        <input type="text" id="jobTitle" required placeholder="e.g. HVAC Technician">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Location</label>
+                        <input type="text" id="jobLocation" required placeholder="e.g. Centurion, Gauteng">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Employment Type</label>
+                        <select id="jobType">
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
+                        <textarea id="jobDescription" required placeholder="Describe the role and responsibilities..."></textarea>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Requirements (one per line)</label>
+                        <textarea id="jobRequirements" placeholder="- Minimum 3 years experience&#10;- Valid drivers license&#10;- HVAC certification preferred"></textarea>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <span id="jobFormBtn">Save Job</span></button>
+                        <button type="button" id="cancelEdit" class="btn btn-outline" style="margin-left: 1rem; display: none; color: var(--text-dark); border-color: var(--border-subtle);">Cancel</button>
+                    </form>
+                </div>
+
+                <div id="viewApplicationsPanel" class="careers-panel" style="display: none;">
+                    <div id="applicationsList" class="application-list"></div>
+                    <p id="noApplications" class="text-center" style="color: var(--text-secondary);">No applications received yet.</p>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 1.5rem;">Recent Quote Requests</h2>
+                <div id="adminQuotesTable"></div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        const currentUser = localStorage.getItem('mktech_current_user');
+        if (!currentUser || JSON.parse(currentUser).role !== 'admin') {
+            window.location.href = '/pages/login.html';
+        }
+
+        const quotes = JSON.parse(localStorage.getItem('mktech_quotes') || '[]');
+        const users = JSON.parse(localStorage.getItem('mktech_users') || '[]');
+
+        document.getElementById('totalQuotes').textContent = quotes.length;
+        document.getElementById('pendingQuotes').textContent = quotes.filter(q => q.status === 'pending').length;
+        document.getElementById('totalUsers').textContent = users.length;
+
+        const table = document.getElementById('adminQuotesTable');
+        if (quotes.length === 0) {
+            table.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No quotes yet.</p>';
+        } else {
+            table.innerHTML = `
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--bg-light);">
+                            <th style="text-align: left; padding: 1rem;">ID</th>
+                            <th style="text-align: left; padding: 1rem;">Name</th>
+                            <th style="text-align: left; padding: 1rem;">Email</th>
+                            <th style="text-align: left; padding: 1rem;">Service</th>
+                            <th style="text-align: left; padding: 1rem;">Status</th>
+                            <th style="text-align: left; padding: 1rem;">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${quotes.slice(0, 10).map(q => `
+                            <tr style="border-bottom: 1px solid var(--bg-light);">
+                                <td style="padding: 1rem;">${q.id}</td>
+                                <td style="padding: 1rem;">${q.name || '-'}</td>
+                                <td style="padding: 1rem;">${q.email || '-'}</td>
+                                <td style="padding: 1rem;">${q.service || 'General'}</td>
+                                <td style="padding: 1rem;">
+                                    <span style="padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; background: ${q.status === 'pending' ? '#FFF3CD' : q.status === 'approved' ? '#D4EDDA' : '#D1ECF1'}; color: ${q.status === 'pending' ? '#856404' : q.status === 'approved' ? '#155724' : '#0C5460'};">${q.status}</span>
+                                </td>
+                                <td style="padding: 1rem;">${new Date(q.createdAt).toLocaleDateString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // ===== Careers Management =====
+        const jobs = JSON.parse(localStorage.getItem('mktech_jobs') || '[]');
+        const applications = JSON.parse(localStorage.getItem('mktech_applications') || '[]');
+        let editingJobId = null;
+
+        function renderAdminJobs() {
+            const container = document.getElementById('adminJobsList');
+            const noJobs = document.getElementById('noAdminJobs');
+            if (jobs.length === 0) {
+                container.innerHTML = '';
+                noJobs.style.display = 'block';
+                return;
+            }
+            noJobs.style.display = 'none';
+            container.innerHTML = jobs.map(job => `
+                <div class="job-item">
+                    <div>
+                        <h4>${escapeHtml(job.title)}</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location)} | <i class="fas fa-briefcase"></i> ${escapeHtml(job.type)} | Posted ${new Date(job.postedDate).toLocaleDateString()}</p>
+                    </div>
+                    <div class="job-actions">
+                        <button class="btn-sm btn-edit" onclick="window.editJob(${job.id})"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn-sm btn-delete" onclick="window.deleteJob(${job.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.editJob = function(id) {
+            const job = jobs.find(j => j.id === id);
+            if (!job) return;
+            editingJobId = id;
+            document.getElementById('jobId').value = job.id;
+            document.getElementById('jobTitle').value = job.title;
+            document.getElementById('jobLocation').value = job.location;
+            document.getElementById('jobType').value = job.type;
+            document.getElementById('jobDescription').value = job.description;
+            document.getElementById('jobRequirements').value = job.requirements ? job.requirements.join('\n') : '';
+            document.getElementById('jobFormBtn').textContent = 'Update Job';
+            document.getElementById('cancelEdit').style.display = 'inline-block';
+            switchTab('addJob');
+        };
+
+        window.deleteJob = function(id) {
+            if (!confirm('Are you sure you want to delete this job posting?')) return;
+            const idx = jobs.findIndex(j => j.id === id);
+            if (idx > -1) {
+                jobs.splice(idx, 1);
+                localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
+                renderAdminJobs();
+            }
+        };
+
+        document.getElementById('jobForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('jobTitle').value.trim();
+            const location = document.getElementById('jobLocation').value.trim();
+            const type = document.getElementById('jobType').value;
+            const description = document.getElementById('jobDescription').value.trim();
+            const requirementsRaw = document.getElementById('jobRequirements').value.trim();
+            const requirements = requirementsRaw ? requirementsRaw.split('\n').map(r => r.trim()).filter(r => r) : [];
+
+            if (editingJobId) {
+                const idx = jobs.findIndex(j => j.id === editingJobId);
+                if (idx > -1) {
+                    jobs[idx] = { ...jobs[idx], title, location, type, description, requirements };
+                }
+                editingJobId = null;
+                document.getElementById('jobFormBtn').textContent = 'Save Job';
+                document.getElementById('cancelEdit').style.display = 'none';
+            } else {
+                jobs.push({
+                    id: Date.now(),
+                    title,
+                    location,
+                    type,
+                    description,
+                    requirements,
+                    postedDate: new Date().toISOString()
+                });
+            }
+            localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
+            document.getElementById('jobForm').reset();
+            renderAdminJobs();
+            switchTab('viewJobs');
+        });
+
+        document.getElementById('cancelEdit').addEventListener('click', () => {
+            editingJobId = null;
+            document.getElementById('jobForm').reset();
+            document.getElementById('jobFormBtn').textContent = 'Save Job';
+            document.getElementById('cancelEdit').style.display = 'none';
+            switchTab('viewJobs');
+        });
+
+        function renderApplications() {
+            const container = document.getElementById('applicationsList');
+            const noApps = document.getElementById('noApplications');
+            if (applications.length === 0) {
+                container.innerHTML = '';
+                noApps.style.display = 'block';
+                return;
+            }
+            noApps.style.display = 'none';
+            container.innerHTML = applications.slice().reverse().map(app => `
+                <div class="app-item">
+                    <strong>${escapeHtml(app.name)}</strong> <span style="color: var(--text-light);">applied for</span> <strong style="color: var(--primary-teal);">${escapeHtml(app.position)}</strong>
+                    <p><i class="fas fa-envelope"></i> ${escapeHtml(app.email)} | <i class="fas fa-paperclip"></i> ${app.fileName ? escapeHtml(app.fileName) : 'No CV attached'}</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.25rem;"><i class="fas fa-clock"></i> ${new Date(app.submittedAt).toLocaleString()}</p>
+                </div>
+            `).join('');
+        }
+
+        // Tab switching
+        document.querySelectorAll('.careers-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                switchTab(tab.dataset.tab);
+            });
+        });
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.careers-tab[data-tab="${tabName}"]`).classList.add('active');
+            document.querySelectorAll('.careers-panel').forEach(p => p.style.display = 'none');
+            document.getElementById(tabName === 'viewJobs' ? 'viewJobsPanel' : tabName === 'addJob' ? 'addJobPanel' : 'viewApplicationsPanel').style.display = 'block';
+            if (tabName === 'viewApplications') renderApplications();
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('mktech_current_user');
+            window.location.href = '/';
+        });
+
+        // Init
+        renderAdminJobs();
+    </script>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

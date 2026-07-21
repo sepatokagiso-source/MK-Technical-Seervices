@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | MK Technical Services</title>
+    <meta name="description" content="Customer dashboard for quote tracking and service management. View your quotes, service history, and project updates.">
+    <link rel="icon" href="/media/logo.png" type="image/png">
+    <link rel="canonical" href="https://www.mktechnicalservices.co.za/pages/dashboard.html">
+    <meta property="og:title" content="Customer Dashboard | MK Technical Services">
+    <meta property="og:description" content="Track your quotes, manage service requests, and view project updates.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mktechnicalservices.co.za/pages/dashboard.html">
+    <meta property="og:image" content="https://www.mktechnicalservices.co.za/media/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Customer Dashboard | MK Technical Services">
+    <meta name="twitter:description" content="Track your quotes, manage service requests, and view project updates.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/media/logo.png" alt="MK Technical Services" class="logo">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/pages/dashboard.html">Dashboard</a></li>
+                <li><a href="/pages/contact.html">Request Quote</a></li>
+                <li><a href="#" id="logoutBtn" class="btn btn-secondary" style="padding: 0.5rem 1.5rem;">Logout</a></li>
+            </ul>
+
+            <button type="button" class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <section id="main" class="section" style="padding-top: 120px;">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <h1>Welcome, <span id="userName"></span>!</h1>
+                <p style="color: var(--text-secondary);">Manage your service requests and account</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-3" style="margin-bottom: 3rem;">
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: var(--primary-teal); margin-bottom: 0.5rem;">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 id="activeQuotes">0</h3>
+                    <p style="color: var(--text-secondary);">Active Quotes</p>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 0.5rem;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 id="appointments">0</h3>
+                    <p style="color: var(--text-secondary);">Appointments</p>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; color: var(--cta-orange); margin-bottom: 0.5rem;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 id="completed">0</h3>
+                    <p style="color: var(--text-secondary);">Completed</p>
+                </div>
+            </div>
+
+            <!-- Recent Quotes -->
+            <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 1.5rem;">Recent Quote Requests</h2>
+                <div id="quotesTable"></div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="/pages/contact.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Request New Quote
+                    </a>
+                </div>
+            </div>
+
+            <!-- Account Info -->
+            <div class="card" style="padding: 2rem;">
+                <h2 style="margin-bottom: 1.5rem;">Account Information</h2>
+                <div class="grid grid-2">
+                    <div>
+                        <p><strong>Name:</strong> <span id="accountName"></span></p>
+                        <p><strong>Email:</strong> <span id="accountEmail"></span></p>
+                        <p><strong>Phone:</strong> <span id="accountPhone"></span></p>
+                    </div>
+                    <div>
+                        <p><strong>Member Since:</strong> <span id="memberSince"></span></p>
+                        <p><strong>Account Status:</strong> <span style="color: green;">Active</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        // Check authentication
+        const currentUser = localStorage.getItem('mktech_current_user');
+        if (!currentUser) {
+            window.location.href = '/pages/login.html';
+        }
+
+        const user = JSON.parse(currentUser);
+
+        // Display user info
+        document.getElementById('userName').textContent = user.name;
+        document.getElementById('accountName').textContent = user.name;
+        document.getElementById('accountEmail').textContent = user.email;
+        document.getElementById('accountPhone').textContent = user.phone || 'Not provided';
+
+        const memberDate = new Date(user.createdAt);
+        document.getElementById('memberSince').textContent = memberDate.toLocaleDateString();
+
+        // Load quotes
+        const quotes = JSON.parse(localStorage.getItem('mktech_quotes') || '[]');
+        const userQuotes = quotes.filter(q => q.userId === user.id);
+
+        // Update stats
+        document.getElementById('activeQuotes').textContent = userQuotes.filter(q => q.status === 'pending').length;
+        document.getElementById('appointments').textContent = userQuotes.filter(q => q.status === 'approved').length;
+        document.getElementById('completed').textContent = userQuotes.filter(q => q.status === 'completed').length;
+
+        // Display quotes table
+        const quotesTable = document.getElementById('quotesTable');
+        if (userQuotes.length === 0) {
+            quotesTable.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No quotes yet. Request your first quote!</p>';
+        } else {
+            quotesTable.innerHTML = `
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--bg-light);">
+                            <th style="text-align: left; padding: 1rem;">Service</th>
+                            <th style="text-align: left; padding: 1rem;">Date</th>
+                            <th style="text-align: left; padding: 1rem;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${userQuotes.slice(0, 5).map(quote => `
+                            <tr style="border-bottom: 1px solid var(--bg-light);">
+                                <td style="padding: 1rem;">${quote.service || 'General Service'}</td>
+                                <td style="padding: 1rem;">${new Date(quote.createdAt).toLocaleDateString()}</td>
+                                <td style="padding: 1rem;">
+                                    <span style="padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; background: ${quote.status === 'pending' ? '#FFF3CD' :
+                    quote.status === 'approved' ? '#D4EDDA' :
+                        '#D1ECF1'
+                }; color: ${quote.status === 'pending' ? '#856404' :
+                    quote.status === 'approved' ? '#155724' :
+                        '#0C5460'
+                };">
+                                        ${quote.status.charAt(0).toUpperCase() + quote.status.slice(1)}
+                                    </span>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('mktech_current_user');
+            window.location.href = '/';
+        });
+    </script>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

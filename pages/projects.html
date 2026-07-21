@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | MK Technical Services</title>
+    <meta name="description"
+        content="Explore our portfolio of HVAC, Electrical, and Construction projects across South Africa.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <!-- Navigation -->
+    <nav class="navbar site-header">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="/" class="logo-link">
+                    <img src="/media/logo.png" alt="MK Technical Services" class="logo">
+                    <span class="logo-text">Technical Services</span>
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item-has-children">
+                    <a href="/pages/services.html" class="nav-link nav-link-toggle">
+                        Services <span class="nav-dropdown-toggle">&#8964;</span>
+                    </a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/pages/services/hvac.html">HVAC Solutions</a></li>
+                        <li><a href="/pages/services/electrical.html">Electrical Infrastructure</a></li>
+                        <li><a href="/pages/services.html">BMS & Controls</a></li>
+                        <li><a href="/pages/services/fire-safety.html">Gas Suppression</a></li>
+                    </ul>
+                </li>
+                <li><a href="/pages/about.html" class="nav-link">About Us</a></li>
+                <li><a href="/pages/projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="/pages/compliance.html" class="nav-link">Compliance</a></li>
+                <li><a href="/pages/careers.html" class="nav-link">Careers</a></li>
+            </ul>
+
+            <a href="/pages/contact.html" class="header-cta">
+                <i class="fas fa-paper-plane"></i> Request a Quote
+            </a>
+
+            <button class="dark-mode-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                <i class="fas fa-moon icon-moon"></i>
+                <i class="fas fa-sun icon-sun"></i>
+            </button>
+
+            <button type="button" class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="main" class="section projects-map-section">
+        <div class="container">
+            <div class="text-center mb-5">
+            <h2 class="reveal">Major Capital Works &amp; Infrastructure Deployments</h2>
+            <p class="lead reveal">Proven execution across high-security, high-output environments. We manage multi-million Rand mechanical and automation contracts with absolute precision.</p>
+            </div>
+        </div>
+
+        <div class="map-wrapper">
+            <div class="map-container">
+                <img src="/media/sa-map.png" alt="South Africa" class="map-image">
+                <div class="map-pin" style="left:52%;top:22%;" data-project="eskom">
+                    <span class="pin-dot"></span>
+                    <span class="pin-label">Eskom Matimba</span>
+                </div>
+                <div class="map-pin" style="left:58%;top:32%;" data-project="rand-water">
+                    <span class="pin-dot"></span>
+                    <span class="pin-label">Rand Water</span>
+                </div>
+                <div class="map-pin" style="left:57%;top:38%;" data-project="johannesburg">
+                    <span class="pin-dot"></span>
+                    <span class="pin-label">Johannesburg</span>
+                </div>
+                <div class="map-pin" style="left:18%;top:78%;" data-project="cape-town">
+                    <span class="pin-dot"></span>
+                    <span class="pin-label">Cape Town</span>
+                </div>
+                <div class="map-pin" style="left:72%;top:52%;" data-project="durban">
+                    <span class="pin-dot"></span>
+                    <span class="pin-label">Durban</span>
+                </div>
+            </div>
+            <div class="map-legend">
+                <div class="legend-title">Contract Deployment Sites</div>
+                <div class="legend-items">
+                    <div class="legend-item"><span class="legend-dot"></span> R3.09M - Matimba Power</div>
+                    <div class="legend-item"><span class="legend-dot"></span> R3.24M - Rand Water HQ</div>
+                    <div class="legend-item"><span class="legend-dot"></span> R2.85M - JHB CBD</div>
+                    <div class="legend-item"><span class="legend-dot"></span> R1.92M - Cape Town</div>
+                    <div class="legend-item"><span class="legend-dot"></span> R4.15M - Durban Port</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-panel-overlay" id="mapPanelOverlay"></div>
+        <aside class="map-panel" id="mapPanel">
+            <button class="panel-close" id="panelClose" aria-label="Close panel">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="panel-header">
+                <div class="panel-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="panel-meta">
+                    <span class="panel-location" id="panelLocation"></span>
+                    <span class="panel-contract-type" id="panelContractType"></span>
+                </div>
+            </div>
+            <div class="panel-body">
+                <h3 id="panelTitle"></h3>
+                <p id="panelDesc"></p>
+                <div class="panel-stats" id="panelStats"></div>
+                <div class="panel-meta-row" id="panelMeta"></div>
+            </div>
+            <div class="panel-footer">
+                <a href="/pages/contact.html" class="btn btn-primary">Request a Quote for This Site</a>
+            </div>
+        </aside>
+    </section>
+
+    <script>
+        const projectData = {
+            eskom: {
+                location: "Lephalale, Limpopo",
+                contractType: "Power Generation / Capital Replacement",
+                title: "Eskom Matimba Power Station",
+                desc: "Chiller Plant Capital Replacement & BMS Automation Overhaul delivered under strict power-station access protocols. End-to-end mechanical installation and full building management system commissioning.",
+                value: "R3.09 Million",
+                status: "100% On-Time Delivery",
+                ref: "Ref: Matimba Engineering - 014 767 0000"
+            },
+            "rand-water": {
+                location: "Pretoria, Gauteng",
+                contractType: "Commercial Infrastructure / Automation",
+                title: "Rand Water Head Office",
+                desc: "Chilled Water Reticulation & Advanced Building Automation Integration. Complete chilled water network install and advanced BMS rollout for commercial modernization.",
+                value: "R3.24 Million",
+                status: "Commercial Modernization Contract",
+                ref: "Ref: Rand Water Procurement - 012 306 5000"
+            },
+            johannesburg: {
+                location: "Sandton, Johannesburg",
+                contractType: "Commercial HVAC Modernisation",
+                title: "Sandton Tower HVAC Modernisation",
+                desc: "Full HVAC system replacement and building management integration for a 42-floor commercial tower. Complex phased delivery with zero operational disruption.",
+                value: "R2.85 Million",
+                status: "On Schedule",
+                ref: "Ref: Facility Management - 011 520 7000"
+            },
+            "cape-town": {
+                location: "Cape Town, Western Cape",
+                contractType: "Infrastructure Upgrade",
+                title: "Cape Town Civic Centre",
+                desc: "Chilled water plant augmentation and fire safety system commissioning for a major municipal facility. Tight programme with multiple concurrent disciplines.",
+                value: "R1.92 Million",
+                status: "Delivery Pending",
+                ref: "Ref: City of Cape Town - 021 400 1111"
+            },
+            durban: {
+                location: "Durban Port, KwaZulu-Natal",
+                contractType: "Port Infrastructure / Industrial",
+                title: "Durban Port Container Terminal",
+                desc: "Electrical infrastructure upgrade and mechanical ventilation for automated container terminal operations. High-output environment with maritime-grade specifications.",
+                value: "R4.15 Million",
+                status: "In Progress",
+                ref: "Ref: Transnet Engineering - 031 337 6000"
+            }
+        };
+
+        const pins = document.querySelectorAll('.map-pin');
+        const panel = document.getElementById('mapPanel');
+        const overlay = document.getElementById('mapPanelOverlay');
+        const closeBtn = document.getElementById('panelClose');
+
+        function openPanel(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            document.getElementById('panelLocation').textContent = data.location;
+            document.getElementById('panelContractType').textContent = data.contractType;
+            document.getElementById('panelTitle').textContent = data.title;
+            document.getElementById('panelDesc').textContent = data.desc;
+            document.getElementById('panelStats').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-card-value">${data.value}</div>
+                    <div class="stat-card-label">Contract Value</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-value">${data.status}</div>
+                    <div class="stat-card-label">Delivery Status</div>
+                </div>
+            `;
+            document.getElementById('panelMeta').innerHTML = `
+                <i class="fas fa-hashtag"></i> ${data.ref}
+            `;
+
+            panel.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePanel() {
+            panel.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        pins.forEach(pin => {
+            pin.addEventListener('click', () => {
+                const key = pin.getAttribute('data-project');
+                openPanel(key);
+                pins.forEach(p => p.classList.remove('active'));
+                pin.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', closePanel);
+        overlay.addEventListener('click', closePanel);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePanel();
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="/media/logo.png" alt="MK Technical Services"
+                        style="height: 60px; margin-bottom: 1rem; filter: brightness(0) invert(1);">
+                    <p>100% Black-owned South African company delivering professional technical services.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+<li><a href="/pages/services/hvac.html">HVAC Solutions</a></li>
+<li><a href="/pages/services/electrical.html">Electrical Engineering</a></li>
+<li><a href="/pages/services/fire-safety.html">Fire & Safety Systems</a></li>
+<li><a href="/pages/services/construction.html">Construction</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/pages/about.html">About Us</a></li>
+                        <li><a href="/pages/projects.html">Projects</a></li>
+                        <li><a href="/pages/contact.html">Contact</a></li>
+                        <li><a href="/pages/login.html">Client Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.75rem;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i>
+                            17 Estcourt Ave, Wierdapark<br>Centurion, 0157
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
+                            <a href="tel:+27126552343">012 655 2343</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
+                            <a href="mailto:info@mktechnicalservices.co.za">info@mktechnicalservices.co.za</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 MK Technical Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

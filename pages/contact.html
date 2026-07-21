@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | MK Technical Services</title>
+    <meta name="description" content="Contact MK Technical Services for HVAC, Electrical, Fire Safety and Construction solutions. Request a free consultation and quote today.">
+    <link rel="icon" href="/media/logo.png" type="image/png">
+    <link rel="canonical" href="https://www.mktechnicalservices.co.za/pages/contact.html">
+    <meta property="og:title" content="Contact Us | MK Technical Services">
+    <meta property="og:description" content="Contact MK Technical Services for HVAC, Electrical, Fire Safety and Construction solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mktechnicalservices.co.za/pages/contact.html">
+    <meta property="og:image" content="https://www.mktechnicalservices.co.za/media/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us | MK Technical Services">
+    <meta name="twitter:description" content="Contact MK Technical Services for HVAC, Electrical, Fire Safety and Construction solutions.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <!-- Navigation -->
+    <nav class="navbar site-header">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="/" class="logo-link">
+                    <img src="/media/logo.png" alt="MK Technical Services" class="logo">
+                    <span class="logo-text">Technical Services</span>
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item-has-children">
+                    <a href="/pages/services.html" class="nav-link nav-link-toggle">
+                        Services <span class="nav-dropdown-toggle">&#8964;</span>
+                    </a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/pages/services/hvac.html">HVAC Solutions</a></li>
+                        <li><a href="/pages/services/electrical.html">Electrical Infrastructure</a></li>
+                        <li><a href="/pages/services.html">BMS & Controls</a></li>
+                        <li><a href="/pages/services/fire-safety.html">Gas Suppression</a></li>
+                    </ul>
+                </li>
+                <li><a href="/pages/about.html" class="nav-link">About Us</a></li>
+                <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
+                <li><a href="/pages/contact.html" class="nav-link active">Contact</a></li>
+                <li><a href="/pages/careers.html" class="nav-link">Careers</a></li>
+            </ul>
+
+            <a href="/pages/contact.html" class="header-cta">
+                <i class="fas fa-paper-plane"></i> Request a Quote
+            </a>
+
+            <button class="dark-mode-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                <i class="fas fa-moon icon-moon"></i>
+                <i class="fas fa-sun icon-sun"></i>
+            </button>
+
+            <button type="button" class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="main" class="hero" style="min-height: 50vh;">
+        <div class="container">
+            <div class="hero-content" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h1>Get In Touch</h1>
+                <p>Contact MK Technical Services for HVAC, Electrical, Fire Safety and Construction solutions. We are here to help you 24/7.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: var(--spacing-3xl);">
+                <h2>Contact & Tender Hub</h2>
+                <p>Whether you're looking to partner with our engineering team or invite us to tender, we're ready to engage.</p>
+            </div>
+            <div class="contact-split">
+
+                <!-- Left Column: Partner with Us -->
+                <div class="contact-panel contact-panel--partner">
+                    <div class="contact-panel-header">
+                        <div class="contact-panel-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Partner with Us</h3>
+                        <p>Speak directly with our engineering or estimating department regarding your facility modernizations or maintenance cycles.</p>
+                    </div>
+
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="012 555 1234">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="john@company.co.za">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service...</option>
+                                <option value="hvac">HVAC Solutions</option>
+                                <option value="electrical">Electrical Engineering</option>
+                                <option value="fire-safety">Fire & Safety Systems</option>
+                                <option value="construction">Construction & Renovations</option>
+                                <option value="emergency">Emergency Service</option>
+                                <option value="other">Other / General Enquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Project Details or Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project, facility needs, or maintenance cycle..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Tender Invitation Hub -->
+                <div class="contact-panel contact-panel--tender">
+                    <div class="contact-panel-header">
+                        <div class="contact-panel-icon contact-panel-icon--tender">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Tender Invitation Hub</h3>
+                        <p>Issue a Request for Quotation (RFQ) or invite MK Technical Services to an active public/private sector tender panel.</p>
+                    </div>
+
+                    <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Drag and drop BOQ files here, or click to browse">
+                        <input type="file" id="boqUpload" class="upload-zone-input" multiple accept=".dwg,.pdf,.xlsx,.xls,.csv">
+                        <div class="upload-zone-content">
+                            <div class="upload-icon-wrap">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <p class="upload-zone-text">
+                                <strong>Drag & Drop your BOQ files here</strong>
+                            </p>
+                            <p class="upload-zone-subtext">or <span class="upload-zone-link">browse to upload</span></p>
+                            <div class="file-type-badges">
+                                <span class="file-type-badge file-type-badge--dwg">.DWG</span>
+                                <span class="file-type-badge file-type-badge--pdf">.PDF</span>
+                                <span class="file-type-badge file-type-badge--xlsx">.XLSX</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uploaded-files-list" id="uploadedFilesList" style="display: none;">
+                        <h4>Uploaded Files</h4>
+                        <ul id="uploadedFilesUl"></ul>
+                        <button type="button" class="btn btn-primary" id="submitTenderBtn" style="width: 100%; margin-top: 1rem;">
+                            <i class="fas fa-paper-plane"></i> Submit Tender Enquiry
+                        </button>
+                    </div>
+
+                    <div class="tender-info" style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,82,255,0.05); border-radius: var(--radius-md); border-left: 3px solid var(--primary-blue);">
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+                            <i class="fas fa-info-circle" style="color: var(--primary-blue); margin-right: 0.5rem;"></i>
+                            Accepted document types include AutoCAD drawings (.dwg), specification sheets (.pdf), and bill-of-quantities spreadsheets (.xlsx). Maximum file size: 50MB per file.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="/media/logo.png" alt="MK Technical Services"
+                        style="height: 60px; margin-bottom: 1rem; filter: brightness(0) invert(1);">
+                    <p>100% Black-owned South African company delivering professional technical services.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+<li><a href="/pages/services/hvac.html">HVAC Solutions</a></li>
+<li><a href="/pages/services/electrical.html">Electrical Engineering</a></li>
+<li><a href="/pages/services/fire-safety.html">Fire & Safety Systems</a></li>
+<li><a href="/pages/services/construction.html">Construction</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/pages/about.html">About Us</a></li>
+                        <li><a href="/pages/projects.html">Projects</a></li>
+                        <li><a href="/pages/contact.html">Contact</a></li>
+                        <li><a href="/pages/login.html">Client Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.75rem;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i>
+                            17 Estcourt Ave, Wierdapark<br>Centurion, 0157
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
+                            <a href="tel:+27126552343">012 655 2343</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
+                            <a href="mailto:info@mktechnicalservices.co.za">info@mktechnicalservices.co.za</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 MK Technical Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

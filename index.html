@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK Technical Services | HVAC, Electrical & Construction Experts</title>
+    <meta name="description"
+        content="100% Black-owned South African company specializing in HVAC, Electrical, Fire Safety & Construction. Professional installation, servicing & repairs.">
+    <meta property="og:title" content="MK Technical Services | HVAC, Electrical & Construction Experts">
+    <meta property="og:description" content="100% Black-owned South African company specializing in HVAC, Electrical, Fire Safety & Construction.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mktechnicalservices.co.za">
+    <meta property="og:image" content="https://www.mktechnicalservices.co.za/media/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MK Technical Services | HVAC, Electrical & Construction Experts">
+    <meta name="twitter:description" content="100% Black-owned South African company specializing in HVAC, Electrical, Fire Safety & Construction.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="icon" href="/media/logo.png" type="image/png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/style.css">
+
+    <!-- Three.js + GSAP for Hero 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            padding: 2rem;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-xl);
+            max-width: 900px;
+            width: 100%;
+            padding: 3rem;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition-base);
+        }
+
+        .modal-close:hover {
+            color: var(--primary-teal);
+            transform: rotate(90deg);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <!-- Navigation -->
+    <nav class="navbar site-header">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="/" class="logo-link">
+                    <img src="/media/logo.png" alt="MK Technical Services" class="logo">
+                    <span class="logo-text">Technical Services</span>
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item-has-children">
+                    <a href="/pages/services.html" class="nav-link nav-link-toggle">
+                        Services <span class="nav-dropdown-toggle">&#8964;</span>
+                    </a>
+                    <ul class="nav-dropdown">
+                        <li><a href="/pages/services/hvac.html">HVAC Solutions</a></li>
+                        <li><a href="/pages/services/electrical.html">Electrical Infrastructure</a></li>
+                        <li><a href="/pages/services.html">BMS & Controls</a></li>
+                        <li><a href="/pages/services/fire-safety.html">Gas Suppression</a></li>
+                    </ul>
+                </li>
+                <li><a href="/pages/about.html" class="nav-link">About Us</a></li>
+                <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
+                <li><a href="/pages/compliance.html" class="nav-link">Compliance</a></li>
+                <li><a href="/pages/careers.html" class="nav-link">Careers</a></li>
+            </ul>
+
+            <a href="/pages/contact.html" class="header-cta">
+                <i class="fas fa-paper-plane"></i> Request a Quote
+            </a>
+
+            <button class="dark-mode-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                <i class="fas fa-moon icon-moon"></i>
+                <i class="fas fa-sun icon-sun"></i>
+            </button>
+
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section (3D Interactive) -->
+    <section class="hero-premium hero-3d-section hero-blueprint-overlay">
+        <video autoplay muted loop playsinline class="hero-bg-video" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.15; pointer-events: none;">
+            <source src="/media/hero-bg.mp4" type="video/mp4">
+        </video>
+        <div class="hero-3d-content">
+            <div class="hero-3d-text">
+                <div class="hero-premium-badges">
+                    <span class="hero-badge"><i class="fas fa-award"></i> CIDB GRADED</span>
+                    <span class="hero-badge"><i class="fas fa-certificate"></i> BBBEE LEVEL 1</span>
+                </div>
+                <h1 class="reveal">Engineering Infrastructure.<br>Automating Efficiency.</h1>
+                <div class="hero-metrics-bar">
+                    <div class="hero-metric-item">
+                        <span class="hero-metric-value" data-target="1" data-prefix="">1</span>
+                        <span class="hero-metric-label">Level 1 B-BBEE Contributor</span>
+                    </div>
+                    <div class="hero-metric-item">
+                        <span class="hero-metric-value">7ME / 4SF</span>
+                        <span class="hero-metric-label">CIDB Gradings</span>
+                    </div>
+                    <div class="hero-metric-item">
+                        <span class="hero-metric-value" data-target="100" data-suffix="%">100%</span>
+                        <span class="hero-metric-label">Black-Owned & Managed</span>
+                    </div>
+                    <div class="hero-metric-item">
+                        <span class="hero-metric-value">Zero</span>
+                        <span class="hero-metric-label">Lost-Time Incidents (LTI)</span>
+                    </div>
+                </div>
+                <p class="reveal">MK Technical Services delivers Tier-1 turnkey mechanical, electrical, and Building Management Systems (BMS) for South Africa's critical infrastructure, public works, and commercial enterprises.</p>
+            </div>
+            <div class="hero-3d-canvas-wrap reveal">
+                <canvas id="hero-canvas"></canvas>
+                <div class="hero-service-tags">
+                    <button class="service-tag" data-index="0">
+                        <span class="service-tag-text">HVAC</span>
+                    </button>
+                    <button class="service-tag" data-index="1">
+                        <span class="service-tag-text">Electrical Engineering</span>
+                    </button>
+                    <button class="service-tag" data-index="2">
+                        <span class="service-tag-text">BMS & Controls</span>
+                    </button>
+                    <button class="service-tag" data-index="3">
+                        <span class="service-tag-text">Gas Suppression</span>
+                    </button>
+                </div>
+                <svg class="orbit-ring-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="heroOrbitGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#0052FF"/>
+                            <stop offset="100%" stop-color="#00E5FF"/>
+                        </linearGradient>
+                        <filter id="heroDotGlow" x="-100%" y="-100%" width="300%" height="300%">
+                            <feGaussianBlur stdDeviation="4" result="blur"/>
+                            <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle class="hero-orbit-bg" cx="250" cy="250" r="200" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                    <path id="heroOrbitPath" class="hero-orbit-path" d="M 250 50 A 200 200 0 1 1 249.9 50" fill="none"/>
+                    <circle id="heroOrbitDot" class="hero-orbit-dot" cx="250" cy="50" r="6" fill="#00E5FF" filter="url(#heroDotGlow)"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2" style="align-items: center; gap: 4rem;">
+                <div>
+                    <h2 class="reveal">About MK Technical Services</h2>
+                    <p class="lead reveal">A 100% Black-owned business founded in the Republic of South Africa, specializing in Air-conditioning, Refrigeration, Electrical, BMS & Controls.</p>
+                    <p class="reveal">Our professional services range from Installation, servicing and repairs of Air-conditioners, Chillers, AHU, Fan-coil, Evaporation Condensers, cooling towers, down blowers, Split units /VRV and packaged units.</p>
+                    <p class="reveal">We are a legal entity registered with CIPC and a certified Level 1 BBBEE contributor. Founded in 2014, officially registered in 2018.</p>
+                    <a href="/pages/about.html" class="btn btn-primary reveal" style="margin-top: 1rem;">Read more</a>
+                </div>
+                <div class="reveal">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-lg);">
+                        <source src="/media/about-video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Infinite Marquee -->
+    <section class="section services-accordion-section" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="reveal">Our Comprehensive Technical Services</h2>
+                <p class="reveal">We specialize in delivering high-quality, professional solutions across HVAC, Electrical, Gas Suppression, and Construction sectors. Backed by expert teams and a commitment to precision, we handle everything from standard maintenance to large-scale infrastructure projects.</p>
+            </div>
+        </div>
+
+        <div class="marquee-slider-wrapper">
+            <div class="marquee-slider-track">
+                <!-- Original 4 Cards -->
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/hvac-solutions.png');"></div>
+                    <h3 class="card-title">HVAC Solutions</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Heating & Ventilation Systems</li>
+                            <li>Air Conditioning Installations</li>
+                            <li>Chiller Plants Maintenance</li>
+                            <li>Cooling Towers & AHU</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/electrical-engineering.png');"></div>
+                    <h3 class="card-title">Electrical Engineering</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>DB Board Scanning</li>
+                            <li>HVAC DB Board Installation</li>
+                            <li>BMS & Controls Integration</li>
+                            <li>General Electrical Services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/fire-safety.png');"></div>
+                    <h3 class="card-title">Gas Suppression & Fire Safety</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>New Gas System Installations & Cabling</li>
+                            <li>Pipe Fitting & System Configuration</li>
+                            <li>Commissioning & Documentation</li>
+                            <li>Fire Extinguisher Maintenance & Support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/construction.png');"></div>
+                    <h3 class="card-title">Construction & Renovations</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>General Building & Maintenance</li>
+                            <li>Road Construction & Maintenance</li>
+                            <li>Paving & Tar Surfacing</li>
+                            <li>Carpentry & Plumbing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cloned Duplicate 4 Cards -->
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/hvac-solutions.png');"></div>
+                    <h3 class="card-title">HVAC Solutions</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Heating & Ventilation Systems</li>
+                            <li>Air Conditioning Installations</li>
+                            <li>Chiller Plants Maintenance</li>
+                            <li>Cooling Towers & AHU</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/electrical-engineering.png');"></div>
+                    <h3 class="card-title">Electrical Engineering</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>DB Board Scanning</li>
+                            <li>HVAC DB Board Installation</li>
+                            <li>BMS & Controls Integration</li>
+                            <li>General Electrical Services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/fire-safety.png');"></div>
+                    <h3 class="card-title">Gas Suppression & Fire Safety</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>New Gas System Installations & Cabling</li>
+                            <li>Pipe Fitting & System Configuration</li>
+                            <li>Commissioning & Documentation</li>
+                            <li>Fire Extinguisher Maintenance & Support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-card">
+                    <div class="card-bg" style="background-image: url('/media/construction.png');"></div>
+                    <h3 class="card-title">Construction & Renovations</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>General Building & Maintenance</li>
+                            <li>Road Construction & Maintenance</li>
+                            <li>Paving & Tar Surfacing</li>
+                            <li>Carpentry & Plumbing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter -->
+    <section class="stats-section" id="stats" style="background: var(--bg-dark);">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" data-target="2018" data-suffix="">2018</div>
+                <div class="stat-label">Founded</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="10" data-suffix="+">0</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="7" data-suffix="">0</div>
+                <div class="stat-label">Core Disciplines</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="24" data-suffix="/7">0</div>
+                <div class="stat-label">Service Availability</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="reveal">Completed Projects</h2>
+                <p class="lead reveal">A selection of our successfully delivered projects across South Africa</p>
+            </div>
+            <div class="grid grid-3">
+                <!-- Project 1 -->
+                <a href="/pages/contact.html" class="case-card reveal">
+                    <div class="case-card-image">
+                        <img src="https://images.unsplash.com/photo-1621905252507-b350f8b74093?w=600&auto=format&fit=crop"
+                            alt="Chiller Repairs" loading="lazy">
+                        <div class="case-card-overlay">
+                            <div class="case-card-meta">Department of Public Works</div>
+                            <div class="case-card-title">Chiller Repairs</div>
+                        </div>
+                    </div>
+                    <div class="case-card-body">
+                        <p>Contract value: R260,633. Ref: Hlongwane - 012 312 1449</p>
+                        <span class="case-link">View Case Study <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="/pages/contact.html" class="case-card reveal">
+                    <div class="case-card-image">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&auto=format&fit=crop"
+                            alt="Wits University" loading="lazy">
+                        <div class="case-card-overlay">
+                            <div class="case-card-meta">Wits University</div>
+                            <div class="case-card-title">Chiller Installation</div>
+                        </div>
+                    </div>
+                    <div class="case-card-body">
+                        <p>Sub-contracted. Contract value: R4,754,000. Ref: Moses Monakgisa - 074 439 4827</p>
+                        <span class="case-link">View Case Study <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="/pages/contact.html" class="case-card reveal">
+                    <div class="case-card-image">
+                        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=600&auto=format&fit=crop"
+                            alt="Armscor" loading="lazy">
+                        <div class="case-card-overlay">
+                            <div class="case-card-meta">Armscor</div>
+                            <div class="case-card-title">Package Unit Installation</div>
+                        </div>
+                    </div>
+                    <div class="case-card-body">
+                        <p>Contract value: R236,888. Ref: Jane Sibiya - 012 428 1911</p>
+                        <span class="case-link">View Case Study <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Project 4 -->
+                <a href="/pages/contact.html" class="case-card reveal">
+                    <div class="case-card-image">
+                        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&auto=format&fit=crop"
+                            alt="Rand Water" loading="lazy">
+                        <div class="case-card-overlay">
+                            <div class="case-card-meta">Rand Water</div>
+                            <div class="case-card-title">HVAC Installation and Repairs</div>
+                        </div>
+                    </div>
+                    <div class="case-card-body">
+                        <p>Sub-contracted. Contract value: R376,000. Ref: Moses Monakgisa - 074 439 4827</p>
+                        <span class="case-link">View Case Study <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Project 5 -->
+                <a href="/pages/contact.html" class="case-card reveal">
+                    <div class="case-card-image">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop"
+                            alt="Nkangala" loading="lazy">
+                        <div class="case-card-overlay">
+                            <div class="case-card-meta">Nkangala Municipality</div>
+                            <div class="case-card-title">Chiller Refurbishment</div>
+                        </div>
+                    </div>
+                    <div class="case-card-body">
+                        <p>Sub-contracted. Contract value: R1.8m. Ref: Anthony SM - 012 786 0865</p>
+                        <span class="case-link">View Case Study <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Project 6 -->
+                <a href="/pages/contact.html" class="case-card reveal">
+                    <div class="case-card-image">
+                        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&auto=format&fit=crop"
+                            alt="DPW CGO" loading="lazy">
+                        <div class="case-card-overlay">
+                            <div class="case-card-meta">Department of Public Works</div>
+                            <div class="case-card-title">Service & Maintenance - CGO Building</div>
+                        </div>
+                    </div>
+                    <div class="case-card-body">
+                        <p>Contract value: R500,000. Ref: Grace Tlou - 012 406 1559</p>
+                        <span class="case-link">View Case Study <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+            <div class="text-center mt-5">
+                <a href="/pages/projects.html" class="btn btn-primary">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="reveal">Testimonials</h2>
+                <p class="lead reveal">Trusted by government and commercial clients nationwide</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">MK Technical Services delivered exceptional HVAC solutions for our headquarters. Their professionalism and technical expertise are unmatched.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">DP</div>
+                        <div>
+                            <div class="testimonial-name">Department of Public Works</div>
+                            <div class="testimonial-role">Government Client</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">The team completed a complex chiller installation at Wits University on time and within budget. Highly recommended for large-scale projects.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">WM</div>
+                        <div>
+                            <div class="testimonial-name">Wits University</div>
+                            <div class="testimonial-role">Facilities Management</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">Outstanding service and commitment. MK Technical Services has been our go-to partner for all HVAC maintenance across multiple sites.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">RW</div>
+                        <div>
+                            <div class="testimonial-name">Rand Water</div>
+                            <div class="testimonial-role">Infrastructure Partner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: var(--bg-dark); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 1rem; font-size: clamp(2rem, 4vw, 3.5rem);">Ready to Elevate Your HVAC Experience?</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; color: rgba(255,255,255,0.7); max-width: 700px; margin-left: auto; margin-right: auto;">
+                Free consultation & no-obligation quote for all HVAC, Electrical, Fire Safety and Construction services.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                <a href="/pages/contact.html" class="btn btn-primary">Request a Quote</a>
+                <a href="tel:+27126552343" class="btn btn-outline">Call: 012 655 2343</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-sticky-cta">
+        <a href="/pages/contact.html"><i class="fas fa-file-alt"></i> Request a Quote</a>
+    </div>
+
+    <!-- Clients Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="reveal">Some of our clients</h2>
+            </div>
+        </div>
+        <div class="clients-slider-wrapper">
+            <div class="clients-slider-track">
+                <div class="client-logo"><img src="/media/clients/ARMCO.png" alt="ARMCO" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/rural-dev.png" alt="Rural Development" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/limpopo.png" alt="Limpopo" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/aketsebe.png" alt="Aketsebe" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/mawana.png" alt="Mawana" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/nampak.png" alt="Nampak" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/steve-biko.png" alt="Steve Biko" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/tembisa.png" alt="Tembisa" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/wits.png" alt="WITS" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/ARMCO.png" alt="ARMCO" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/rural-dev.png" alt="Rural Development" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/limpopo.png" alt="Limpopo" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/aketsebe.png" alt="Aketsebe" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/mawana.png" alt="Mawana" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/nampak.png" alt="Nampak" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/steve-biko.png" alt="Steve Biko" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/tembisa.png" alt="Tembisa" loading="lazy"></div>
+                <div class="client-logo"><img src="/media/clients/wits.png" alt="WITS" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid footer-grid--enhanced">
+                <div class="footer-col footer-col--brand">
+                    <img src="/media/logo.png" alt="MK Technical Services" class="footer-logo">
+                    <p>100% Black-owned South African company delivering professional technical services.</p>
+                    <div class="footer-badges">
+                        <span class="file-type-badge file-type-badge--dwg">.DWG</span>
+                        <span class="file-type-badge file-type-badge--pdf">.PDF</span>
+                        <span class="file-type-badge file-type-badge--xlsx">.XLSX</span>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/pages/services/hvac.html">HVAC Solutions</a></li>
+                        <li><a href="/pages/services/electrical.html">Electrical Engineering</a></li>
+                        <li><a href="/pages/services/fire-safety.html">Fire & Safety Systems</a></li>
+                        <li><a href="/pages/services/construction.html">Construction</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/pages/about.html">About Us</a></li>
+                        <li><a href="/pages/projects.html">Projects</a></li>
+                        <li><a href="/pages/contact.html">Contact</a></li>
+                        <li><a href="/pages/login.html">Client Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>17 Estcourt Ave, Wierdapark<br>Centurion, 0157</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+27126552343">012 655 2343</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@mktechnicalservices.co.za">info@mktechnicalservices.co.za</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 MK Technical Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modalBody">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Service Details Data
+        const serviceDetails = {
+            'hvac': {
+                title: 'Heating Ventilation Air-Condition (HVAC)',
+                icon: 'wind',
+                description: 'Complete HVAC solutions: installations, rapid repairs, and 24/7 service for enhanced comfort in diverse spaces.',
+                services: [
+                    'Installation of Air-conditioners, Chillers, AHU, Fan-coil units',
+                    'Evaporation Condensers & Cooling Towers',
+                    'Down Blowers, Split units/VRV & Packaged units',
+                    'Servicing & Repairs (Major & Minor)',
+                    '24/7 Emergency Service'
+                ]
+            },
+            'electrical': {
+                title: 'Electrical Engineering',
+                icon: 'bolt',
+                description: 'DB board scanning | Installation of HVAC DB board | BMS & Controls | General Electrical Services.',
+                services: [
+                    'DB Board Scanning',
+                    'Installation of HVAC DB Boards',
+                    'BMS & Controls Systems',
+                    'General Electrical Services'
+                ]
+            },
+            'fire-safety': {
+                title: 'Gas Suppression Systems and Fire extinguishers',
+                icon: 'fire-extinguisher',
+                description: 'New Installations | Cabling | Termination | Pipe Fitting | System Configuration | Commissioning & Documentation | Maintenance & Support',
+                services: [
+                    'New Installations',
+                    'Cabling & Termination',
+                    'Pipe Fitting & System Configuration',
+                    'Commissioning & Documentation',
+                    'Maintenance & Support'
+                ]
+            },
+            'construction': {
+                title: 'Construction Services and Renovations',
+                icon: 'hard-hat',
+                description: 'General Building & Maintenance | Road Construction & Maintenance | Paving & Tar Surfacing | Carpentry | Plumbing',
+                services: [
+                    'General Building & Maintenance',
+                    'Road Construction & Maintenance',
+                    'Paving & Tar Surfacing',
+                    'Carpentry Services',
+                    'Plumbing Services'
+                ]
+            }
+        };
+
+        // Modal Logic
+        const modal = document.getElementById('serviceModal');
+        const modalBody = document.getElementById('modalBody');
+        const closeBtn = document.querySelector('.modal-close');
+
+        window.openServiceModal = (serviceId) => {
+            const details = serviceDetails[serviceId];
+            if (!details) return;
+
+            modalBody.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, var(--primary-teal), var(--primary-blue)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white;">
+                        <i class="fas fa-${details.icon}"></i>
+                    </div>
+                    <h2 style="margin-bottom: 1rem;">${details.title}</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">${details.description}</p>
+                </div>
+
+                <div style="background: var(--bg-light); padding: 2rem; border-radius: var(--radius-lg); margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">Our Services Include:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        ${details.services.map(s => `
+                            <div style="display: flex; align-items: start; gap: 0.75rem;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-teal); margin-top: 0.25rem;"></i>
+                                <span>${s}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="/pages/contact.html" class="btn btn-primary">Request a Quote</a>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

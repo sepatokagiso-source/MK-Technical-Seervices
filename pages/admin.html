@@ -32,7 +32,7 @@
         }
 
         .admin-sidebar {
-            background: var(--bg-dark);
+            background: #0B1220;
             color: white;
             padding: 2rem 0;
             position: fixed;
@@ -42,6 +42,7 @@
             height: 100vh;
             overflow-y: auto;
             z-index: 1000;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .admin-sidebar .logo-area {
@@ -55,7 +56,7 @@
             filter: brightness(0) invert(1);
         }
 
-        .admin-sidebar .logo-area .logo-text-sidebar {
+        .admin-sidebar .logo-text-sidebar {
             font-family: var(--font-heading);
             font-size: 0.85rem;
             font-weight: 700;
@@ -81,13 +82,14 @@
             font-size: 0.95rem;
             transition: all 0.25s ease;
             border-left: 3px solid transparent;
+            cursor: pointer;
         }
 
         .admin-nav li a:hover,
         .admin-nav li a.active {
             background: rgba(255, 255, 255, 0.05);
             color: white;
-            border-left-color: var(--primary-teal);
+            border-left-color: #00E5FF;
         }
 
         .admin-nav li a i {
@@ -99,7 +101,7 @@
         .admin-main {
             grid-column: 2;
             padding: 2rem 3rem;
-            background: var(--bg-light);
+            background: #F4F7FA;
             min-height: 100vh;
         }
 
@@ -114,7 +116,7 @@
             font-size: 1.75rem;
             font-weight: 800;
             margin: 0;
-            color: var(--text-dark);
+            color: #0F1B2E;
         }
 
         .admin-header .admin-user {
@@ -127,7 +129,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: var(--accent-gradient);
+            background: linear-gradient(135deg, #00E5FF, #0052FF);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -146,22 +148,23 @@
         .stat-card {
             background: white;
             padding: 2rem;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-sm);
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             text-align: center;
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
         }
 
         .stat-card .stat-icon {
             width: 56px;
             height: 56px;
-            border-radius: var(--radius-md);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -173,11 +176,11 @@
             font-size: 2.25rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            color: #0F1B2E;
         }
 
         .stat-card p {
-            color: var(--text-secondary);
+            color: #64748B;
             font-size: 0.95rem;
             margin: 0;
         }
@@ -185,16 +188,17 @@
         .admin-content-card {
             background: white;
             padding: 2rem;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-sm);
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
             margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         .admin-content-card h2 {
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            color: var(--text-dark);
+            color: #0F1B2E;
         }
 
         .data-table {
@@ -205,8 +209,8 @@
         .data-table th {
             text-align: left;
             padding: 1rem;
-            border-bottom: 2px solid var(--bg-light);
-            color: var(--text-secondary);
+            border-bottom: 2px solid #F1F5F9;
+            color: #64748B;
             font-weight: 600;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -215,12 +219,12 @@
 
         .data-table td {
             padding: 1rem;
-            border-bottom: 1px solid var(--bg-light);
-            color: var(--text-dark);
+            border-bottom: 1px solid #F1F5F9;
+            color: #0F1B2E;
         }
 
         .data-table tr:hover td {
-            background: var(--bg-light);
+            background: #F8FAFC;
         }
 
         .status-badge {
@@ -232,24 +236,24 @@
         }
 
         .status-pending {
-            background: #FFF3CD;
-            color: #856404;
+            background: #FEF3C7;
+            color: #92400E;
         }
 
         .status-approved {
-            background: #D4EDDA;
-            color: #155724;
+            background: #D1FAE5;
+            color: #065F46;
         }
 
         .status-declined {
-            background: #F8D7DA;
-            color: #721C24;
+            background: #FEE2E2;
+            color: #991B1B;
         }
 
         .btn-xs {
             padding: 0.4rem 0.75rem;
             font-size: 0.8rem;
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             border: none;
             cursor: pointer;
             font-weight: 600;
@@ -258,17 +262,17 @@
         }
 
         .btn-view {
-            background: var(--primary-blue);
+            background: #0052FF;
             color: white;
         }
 
         .btn-approve {
-            background: #28A745;
+            background: #10B981;
             color: white;
         }
 
         .btn-decline {
-            background: #DC3545;
+            background: #EF4444;
             color: white;
         }
 
@@ -276,9 +280,9 @@
             display: flex;
             gap: 0.25rem;
             margin-bottom: 2rem;
-            background: var(--bg-light);
+            background: #F1F5F9;
             padding: 0.5rem;
-            border-radius: var(--radius-lg);
+            border-radius: 12px;
             width: fit-content;
         }
 
@@ -288,37 +292,37 @@
             font-weight: 600;
             font-family: var(--font-heading);
             font-size: 0.9rem;
-            border-radius: var(--radius-md);
+            border-radius: 10px;
             border: none;
             background: transparent;
-            color: var(--text-secondary);
+            color: #64748B;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 0.03em;
         }
 
         .admin-tab:hover {
-            color: var(--text-dark);
+            color: #0F1B2E;
             background: rgba(255, 255, 255, 0.6);
         }
 
         .admin-tab.active {
             background: white;
-            color: var(--primary-teal);
-            box-shadow: var(--shadow-sm);
+            color: #00B8D9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
         .admin-panel {
             display: none;
-            animation: fadeIn 0.35s ease;
         }
 
         .admin-panel.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -326,7 +330,7 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
-            border-bottom: 2px solid var(--border-subtle);
+            border-bottom: 2px solid #E2E8F0;
         }
 
         .careers-tab {
@@ -335,11 +339,12 @@
             font-weight: 600;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
+            user-select: none;
         }
 
         .careers-tab.active {
-            color: var(--primary-teal);
-            border-bottom-color: var(--primary-teal);
+            color: #00B8D9;
+            border-bottom-color: #00B8D9;
         }
 
         .careers-panel {
@@ -348,22 +353,27 @@
 
         .careers-panel.active {
             display: block;
-            animation: fadeIn 0.35s ease;
+            animation: fadeIn 0.3s ease;
         }
 
         .job-form { max-width: 700px; }
         .job-form input, .job-form textarea, .job-form select {
             width: 100%;
             padding: 0.85rem 1rem;
-            border: 2px solid var(--border-subtle);
-            border-radius: var(--radius-md);
+            border: 2px solid #E2E8F0;
+            border-radius: 10px;
             margin-bottom: 1rem;
             font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .job-form input:focus, .job-form textarea:focus, .job-form select:focus {
+            outline: none;
+            border-color: #00B8D9;
         }
         .job-form textarea {
             min-height: 120px;
             resize: vertical;
-            font-family: var(--font-body);
+            font-family: inherit;
         }
         .job-item {
             display: flex;
@@ -371,40 +381,43 @@
             align-items: center;
             padding: 1.25rem;
             background: white;
-            border-radius: var(--radius-lg);
+            border-radius: 12px;
             margin-bottom: 1rem;
-            border-left: 4px solid var(--primary-teal);
-            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #00B8D9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid #F1F5F9;
+            border-left: 4px solid #00B8D9;
         }
-        .job-item h4 { margin-bottom: 0.25rem; color: var(--text-dark); }
-        .job-item p { color: var(--text-secondary); font-size: 0.9rem; margin: 0; }
+        .job-item h4 { margin-bottom: 0.25rem; color: #0F1B2E; }
+        .job-item p { color: #64748B; font-size: 0.9rem; margin: 0; }
         .job-actions { display: flex; gap: 0.5rem; }
         .btn-sm {
             padding: 0.5rem 1rem;
             font-size: 0.85rem;
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             border: none;
             cursor: pointer;
             font-weight: 600;
         }
-        .btn-edit { background: var(--primary-blue); color: white; }
-        .btn-delete { background: #dc3545; color: white; }
+        .btn-edit { background: #0052FF; color: white; }
+        .btn-delete { background: #EF4444; color: white; }
         .application-list { margin-top: 1.5rem; }
         .app-item {
             padding: 1rem;
-            background: var(--bg-light);
-            border-radius: var(--radius-md);
+            background: #F8FAFC;
+            border-radius: 10px;
             margin-bottom: 0.75rem;
-            border-left: 3px solid var(--primary-teal);
+            border-left: 3px solid #00B8D9;
         }
-        .app-item strong { color: var(--text-dark); }
-        .app-item p { margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem; }
+        .app-item strong { color: #0F1B2E; }
+        .app-item p { margin: 0.25rem 0 0; color: #64748B; font-size: 0.9rem; }
 
         .toggle-switch {
             position: relative;
             display: inline-block;
             width: 50px;
             height: 26px;
+            flex-shrink: 0;
         }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .toggle-slider {
@@ -414,7 +427,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #ccc;
+            background-color: #CBD5E1;
             transition: .3s;
             border-radius: 26px;
         }
@@ -429,7 +442,7 @@
             transition: .3s;
             border-radius: 50%;
         }
-        input:checked + .toggle-slider { background-color: var(--primary-teal); }
+        input:checked + .toggle-slider { background-color: #00B8D9; }
         input:checked + .toggle-slider:before { transform: translateX(24px); }
 
         .modal {
@@ -449,7 +462,7 @@
         .modal.active { display: flex; }
         .modal-content {
             background: white;
-            border-radius: var(--radius-xl);
+            border-radius: 16px;
             max-width: 600px;
             width: 100%;
             padding: 2.5rem;
@@ -464,9 +477,9 @@
             border: none;
             font-size: 1.75rem;
             cursor: pointer;
-            color: var(--text-secondary);
+            color: #64748B;
         }
-        .modal-close:hover { color: var(--primary-teal); }
+        .modal-close:hover { color: #00B8D9; }
 
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -483,6 +496,7 @@
 </head>
 
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <div class="admin-layout">
         <!-- Sidebar -->
         <aside class="admin-sidebar">
@@ -505,34 +519,34 @@
         </aside>
 
         <!-- Main -->
-        <main class="admin-main">
+        <main class="admin-main" id="main">
             <div class="admin-header">
                 <h1>Admin Dashboard</h1>
                 <div class="admin-user">
                     <div class="user-avatar">A</div>
-                    <span style="font-weight: 600; color: var(--text-dark);">Admin</span>
+                    <span style="font-weight: 600; color: #0F1B2E;">Admin</span>
                 </div>
             </div>
 
             <!-- Overview Panel -->
             <div id="overviewPanel" class="admin-panel active">
                 <div class="stat-grid">
-                    <div class="stat-card" onclick="scrollToSection('quotesTable')">
-                        <div class="stat-icon" style="background: rgba(0, 229, 255, 0.1); color: var(--primary-teal);">
+                    <div class="stat-card" id="statTotalQuotes">
+                        <div class="stat-icon" style="background: rgba(0, 229, 255, 0.1); color: #00B8D9;">
                             <i class="fas fa-file-alt"></i>
                         </div>
                         <h3 id="totalQuotes">0</h3>
                         <p>Total Quotes</p>
                     </div>
-                    <div class="stat-card" onclick="filterQuotesByStatus('pending')">
-                        <div class="stat-icon" style="background: rgba(0, 82, 255, 0.1); color: var(--primary-blue);">
+                    <div class="stat-card" id="statPendingQuotes">
+                        <div class="stat-icon" style="background: rgba(0, 82, 255, 0.1); color: #0052FF;">
                             <i class="fas fa-clock"></i>
                         </div>
                         <h3 id="pendingQuotes">0</h3>
                         <p>Pending Quotes</p>
                     </div>
-                    <div class="stat-card" onclick="switchTab('users')">
-                        <div class="stat-icon" style="background: rgba(255, 107, 53, 0.1); color: var(--cta-orange);">
+                    <div class="stat-card" id="statTotalUsers">
+                        <div class="stat-icon" style="background: rgba(255, 107, 53, 0.1); color: #FF6B35;">
                             <i class="fas fa-users"></i>
                         </div>
                         <h3 id="totalUsers">0</h3>
@@ -541,7 +555,7 @@
                 </div>
 
                 <div class="admin-content-card">
-                    <h2><i class="fas fa-file-alt" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> Recent Quote Requests</h2>
+                    <h2><i class="fas fa-file-alt" style="color: #00B8D9; margin-right: 0.5rem;"></i> Recent Quote Requests</h2>
                     <div id="quotesTable"></div>
                 </div>
             </div>
@@ -549,7 +563,7 @@
             <!-- Quotes Panel -->
             <div id="quotesPanel" class="admin-panel">
                 <div class="admin-content-card">
-                    <h2><i class="fas fa-file-alt" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> All Quote Requests</h2>
+                    <h2><i class="fas fa-file-alt" style="color: #00B8D9; margin-right: 0.5rem;"></i> All Quote Requests</h2>
                     <div id="allQuotesTable"></div>
                 </div>
             </div>
@@ -557,7 +571,7 @@
             <!-- Careers Panel -->
             <div id="careersPanel" class="admin-panel">
                 <div class="admin-content-card">
-                    <h2><i class="fas fa-briefcase" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> Careers Management</h2>
+                    <h2><i class="fas fa-briefcase" style="color: #00B8D9; margin-right: 0.5rem;"></i> Careers Management</h2>
                     <div class="careers-tabs">
                         <div class="careers-tab active" data-tab="viewJobs">Job Postings</div>
                         <div class="careers-tab" data-tab="addJob">Add / Edit Job</div>
@@ -566,35 +580,35 @@
 
                     <div id="viewJobsPanel" class="careers-panel active">
                         <div id="adminJobsList"></div>
-                        <p id="noAdminJobs" class="text-center" style="color: var(--text-secondary); display: none;">No job postings yet.</p>
+                        <p id="noAdminJobs" class="text-center" style="color: #64748B; display: none;">No job postings yet.</p>
                     </div>
 
                     <div id="addJobPanel" class="careers-panel">
                         <form id="jobForm" class="job-form">
                             <input type="hidden" id="jobId">
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Job Title</label>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0F1B2E;">Job Title</label>
                             <input type="text" id="jobTitle" required placeholder="e.g. HVAC Technician">
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Location</label>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0F1B2E;">Location</label>
                             <input type="text" id="jobLocation" required placeholder="e.g. Centurion, Gauteng">
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Employment Type</label>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0F1B2E;">Employment Type</label>
                             <select id="jobType">
                                 <option value="Full-time">Full-time</option>
                                 <option value="Part-time">Part-time</option>
                                 <option value="Contract">Contract</option>
                                 <option value="Internship">Internship</option>
                             </select>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0F1B2E;">Description</label>
                             <textarea id="jobDescription" required placeholder="Describe the role and responsibilities..."></textarea>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Requirements (one per line)</label>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0F1B2E;">Requirements (one per line)</label>
                             <textarea id="jobRequirements" placeholder="- Minimum 3 years experience&#10;- Valid drivers license&#10;- HVAC certification preferred"></textarea>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <span id="jobFormBtn">Save Job</span></button>
-                            <button type="button" id="cancelEdit" class="btn btn-outline" style="margin-left: 1rem; display: none; color: var(--text-dark); border-color: var(--border-subtle);">Cancel</button>
+                            <button type="submit" class="btn btn-primary" style="font-weight: 700;"><i class="fas fa-save"></i> <span id="jobFormBtn">Save Job</span></button>
+                            <button type="button" id="cancelEdit" class="btn btn-outline" style="margin-left: 1rem; display: none; color: #0F1B2E; border-color: #E2E8F0; font-weight: 700;">Cancel</button>
                         </form>
                     </div>
 
                     <div id="viewApplicationsPanel" class="careers-panel">
                         <div id="applicationsList" class="application-list"></div>
-                        <p id="noApplications" class="text-center" style="color: var(--text-secondary);">No applications received yet.</p>
+                        <p id="noApplications" class="text-center" style="color: #64748B;">No applications received yet.</p>
                     </div>
                 </div>
             </div>
@@ -602,7 +616,7 @@
             <!-- Users Panel -->
             <div id="usersPanel" class="admin-panel">
                 <div class="admin-content-card">
-                    <h2><i class="fas fa-users" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> Registered Users</h2>
+                    <h2><i class="fas fa-users" style="color: #00B8D9; margin-right: 0.5rem;"></i> Registered Users</h2>
                     <div id="usersTable"></div>
                 </div>
             </div>
@@ -612,364 +626,372 @@
     <!-- Quote Detail Modal -->
     <div id="quoteModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('quoteModal')">&times;</button>
-            <h2 style="margin-bottom: 1.5rem; color: var(--text-dark);">Quote Details</h2>
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: #0F1B2E;">Quote Details</h2>
             <div id="quoteModalBody"></div>
         </div>
     </div>
 
-    <script type="module">
-        const currentUser = localStorage.getItem('mktech_current_user');
-        if (!currentUser || JSON.parse(currentUser).role !== 'admin') {
-            window.location.href = '/pages/login.html';
-        }
+    <script>
+        (function () {
+            function $(id) { return document.getElementById(id); }
 
-        const quotes = JSON.parse(localStorage.getItem('mktech_quotes') || '[]');
-        const users = JSON.parse(localStorage.getItem('mktech_users') || '[]');
-        const jobs = JSON.parse(localStorage.getItem('mktech_jobs') || '[]');
-        const applications = JSON.parse(localStorage.getItem('mktech_applications') || '[]');
-        let editingJobId = null;
-
-        document.getElementById('totalQuotes').textContent = quotes.length;
-        document.getElementById('pendingQuotes').textContent = quotes.filter(q => q.status === 'pending').length;
-        document.getElementById('totalUsers').textContent = users.length;
-
-        function renderQuotesTable(containerId, quoteList) {
-            const container = document.getElementById(containerId);
-            if (quoteList.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No quotes found.</p>';
+            const currentUser = localStorage.getItem('mktech_current_user');
+            if (!currentUser || JSON.parse(currentUser).role !== 'admin') {
+                window.location.href = '/pages/login.html';
                 return;
             }
-            container.innerHTML = `
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Service</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${quoteList.slice(0, 20).map(q => `
+
+            const quotes = JSON.parse(localStorage.getItem('mktech_quotes') || '[]');
+            const users = JSON.parse(localStorage.getItem('mktech_users') || '[]');
+            const jobs = JSON.parse(localStorage.getItem('mktech_jobs') || '[]');
+            const applications = JSON.parse(localStorage.getItem('mktech_applications') || '[]');
+            let editingJobId = null;
+
+            $('totalQuotes').textContent = quotes.length;
+            $('pendingQuotes').textContent = quotes.filter(q => q.status === 'pending').length;
+            $('totalUsers').textContent = users.length;
+
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            function renderQuotesTable(containerId, quoteList) {
+                const container = $(containerId);
+                if (!container) return;
+                if (!quoteList || quoteList.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: #64748B; padding: 2rem;">No quotes found.</p>';
+                    return;
+                }
+                container.innerHTML = `
+                    <table class="data-table">
+                        <thead>
                             <tr>
-                                <td>${q.id}</td>
-                                <td>${q.name || '-'}</td>
-                                <td>${q.email || '-'}</td>
-                                <td>${q.service || 'General'}</td>
-                                <td>
-                                    <span class="status-badge ${q.status === 'pending' ? 'status-pending' : q.status === 'approved' ? 'status-approved' : 'status-declined'}">${q.status}</span>
-                                </td>
-                                <td>${new Date(q.createdAt).toLocaleDateString()}</td>
-                                <td>
-                                    <button class="btn-xs btn-view" onclick="viewQuote(${q.id})"><i class="fas fa-eye"></i> View</button>
-                                    ${q.status === 'pending' ? `
-                                        <button class="btn-xs btn-approve" onclick="updateQuoteStatus(${q.id}, 'approved')"><i class="fas fa-check"></i></button>
-                                        <button class="btn-xs btn-decline" onclick="updateQuoteStatus(${q.id}, 'declined')"><i class="fas fa-times"></i></button>
-                                    ` : ''}
-                                </td>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
                             </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            `;
-        }
-
-        window.viewQuote = function(id) {
-            const q = quotes.find(quote => quote.id === id);
-            if (!q) return;
-            const modalBody = document.getElementById('quoteModalBody');
-            modalBody.innerHTML = `
-                <div style="display: grid; gap: 1rem;">
-                    <p><strong>Name:</strong> ${q.name || '-'}</p>
-                    <p><strong>Email:</strong> ${q.email || '-'}</p>
-                    <p><strong>Phone:</strong> ${q.phone || '-'}</p>
-                    <p><strong>Service:</strong> ${q.service || 'General'}</p>
-                    <p><strong>Status:</strong> <span class="status-badge ${q.status === 'pending' ? 'status-pending' : q.status === 'approved' ? 'status-approved' : 'status-declined'}">${q.status}</span></p>
-                    <p><strong>Message:</strong></p>
-                    <p style="background: var(--bg-light); padding: 1rem; border-radius: var(--radius-md); color: var(--text-secondary);">${q.message || 'No message provided.'}</p>
-                    <p style="font-size: 0.85rem; color: var(--text-light);"><i class="fas fa-clock"></i> Submitted: ${new Date(q.createdAt).toLocaleString()}</p>
-                </div>
-            `;
-            document.getElementById('quoteModal').classList.add('active');
-        };
-
-        window.closeModal = function(id) {
-            document.getElementById(id).classList.remove('active');
-        };
-
-        window.updateQuoteStatus = function(id, status) {
-            const idx = quotes.findIndex(q => q.id === id);
-            if (idx > -1) {
-                quotes[idx].status = status;
-                localStorage.setItem('mktech_quotes', JSON.stringify(quotes));
-                renderQuotesTable('quotesTable', quotes);
-                renderQuotesTable('allQuotesTable', quotes);
-                document.getElementById('totalQuotes').textContent = quotes.length;
-                document.getElementById('pendingQuotes').textContent = quotes.filter(q => q.status === 'pending').length;
+                        </thead>
+                        <tbody>
+                            ${quoteList.slice(0, 20).map(q => `
+                                <tr>
+                                    <td>${q.id}</td>
+                                    <td>${escapeHtml(q.name || '-')}</td>
+                                    <td>${escapeHtml(q.email || '-')}</td>
+                                    <td>${escapeHtml(q.service || 'General')}</td>
+                                    <td>
+                                        <span class="status-badge ${q.status === 'pending' ? 'status-pending' : q.status === 'approved' ? 'status-approved' : 'status-declined'}">${q.status}</span>
+                                    </td>
+                                    <td>${new Date(q.createdAt).toLocaleDateString()}</td>
+                                    <td>
+                                        <button class="btn-xs btn-view" data-action="view-quote" data-id="${q.id}"><i class="fas fa-eye"></i> View</button>
+                                        ${q.status === 'pending' ? `
+                                            <button class="btn-xs btn-approve" data-action="approve-quote" data-id="${q.id}"><i class="fas fa-check"></i></button>
+                                            <button class="btn-xs btn-decline" data-action="decline-quote" data-id="${q.id}"><i class="fas fa-times"></i></button>
+                                        ` : ''}
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
             }
-        };
 
-        window.scrollToSection = function(sectionId) {
-            switchTab('overview');
-            setTimeout(() => {
-                const el = document.getElementById(sectionId);
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-        };
-
-        window.filterQuotesByStatus = function(status) {
-            switchTab('quotes');
-            const filtered = quotes.filter(q => q.status === status);
-            renderQuotesTable('allQuotesTable', filtered);
-        };
-
-        renderQuotesTable('quotesTable', quotes);
-        renderQuotesTable('allQuotesTable', quotes);
-
-        // Admin sidebar nav
-        document.querySelectorAll('.admin-nav a[data-nav]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const nav = link.dataset.nav;
-                switchTab(nav);
-                document.querySelectorAll('.admin-nav a').forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-            });
-        });
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
-            const panelId = tabName + 'Panel';
-            const panel = document.getElementById(panelId);
-            if (panel) panel.classList.add('active');
-
-            if (tabName === 'users') renderUsersTable();
-            if (tabName === 'careers') {
-                renderAdminJobs();
-                renderApplications();
-            }
-            if (tabName === 'quotes') renderQuotesTable('allQuotesTable', quotes);
-        }
-
-        function renderUsersTable() {
-            const container = document.getElementById('usersTable');
-            if (users.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No users registered yet.</p>';
-                return;
-            }
-            container.innerHTML = `
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Joined</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${users.map(u => `
+            function renderUsersTable() {
+                const container = $('usersTable');
+                if (!container) return;
+                if (users.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: #64748B; padding: 2rem;">No users registered yet.</p>';
+                    return;
+                }
+                container.innerHTML = `
+                    <table class="data-table">
+                        <thead>
                             <tr>
-                                <td>${escapeHtml(u.name || '-')}</td>
-                                <td>${escapeHtml(u.email || '-')}</td>
-                                <td><span class="status-badge ${u.role === 'admin' ? 'status-approved' : 'status-pending'}">${u.role}</span></td>
-                                <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined</th>
                             </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            `;
-        }
-
-        // ===== Careers Management =====
-        function renderAdminJobs() {
-            const container = document.getElementById('adminJobsList');
-            const noJobs = document.getElementById('noAdminJobs');
-            if (jobs.length === 0) {
-                container.innerHTML = '';
-                noJobs.style.display = 'block';
-                return;
+                        </thead>
+                        <tbody>
+                            ${users.map(u => `
+                                <tr>
+                                    <td>${escapeHtml(u.name || '-')}</td>
+                                    <td>${escapeHtml(u.email || '-')}</td>
+                                    <td><span class="status-badge ${u.role === 'admin' ? 'status-approved' : 'status-pending'}">${u.role}</span></td>
+                                    <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
             }
-            noJobs.style.display = 'none';
-            container.innerHTML = jobs.map(job => `
-                <div class="job-item">
-                    <div style="flex: 1;">
-                        <h4>${escapeHtml(job.title)} ${job.active === false ? '<span style="color: var(--text-light); font-size: 0.85rem;">(Inactive)</span>' : ''}</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location)} | <i class="fas fa-briefcase"></i> ${escapeHtml(job.type)} | Posted ${new Date(job.postedDate).toLocaleDateString()}</p>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <label class="toggle-switch" title="Toggle Active/Inactive">
-                            <input type="checkbox" ${job.active !== false ? 'checked' : ''} onchange="toggleJobStatus(${job.id})">
-                            <span class="toggle-slider"></span>
-                        </label>
-                        <div class="job-actions">
-                            <button class="btn-sm btn-edit" onclick="window.editJob(${job.id})"><i class="fas fa-edit"></i></button>
-                            <button class="btn-sm btn-delete" onclick="window.deleteJob(${job.id})"><i class="fas fa-trash"></i></button>
+
+            function renderAdminJobs() {
+                const container = $('adminJobsList');
+                const noJobs = $('noAdminJobs');
+                if (!container) return;
+                if (jobs.length === 0) {
+                    container.innerHTML = '';
+                    noJobs.style.display = 'block';
+                    return;
+                }
+                noJobs.style.display = 'none';
+                container.innerHTML = jobs.map(job => `
+                    <div class="job-item">
+                        <div style="flex: 1;">
+                            <h4>${escapeHtml(job.title)} ${job.active === false ? '<span style="color: #94A3B8; font-size: 0.85rem;">(Inactive)</span>' : ''}</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location)} | <i class="fas fa-briefcase"></i> ${escapeHtml(job.type)} | Posted ${new Date(job.postedDate).toLocaleDateString()}</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <label class="toggle-switch" title="Toggle Active/Inactive">
+                                <input type="checkbox" ${job.active !== false ? 'checked' : ''} data-action="toggle-job" data-id="${job.id}">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <div class="job-actions">
+                                <button class="btn-sm btn-edit" data-action="edit-job" data-id="${job.id}"><i class="fas fa-edit"></i></button>
+                                <button class="btn-sm btn-delete" data-action="delete-job" data-id="${job.id}"><i class="fas fa-trash"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
-        }
-
-        window.toggleJobStatus = function(id) {
-            const idx = jobs.findIndex(j => j.id === id);
-            if (idx > -1) {
-                jobs[idx].active = !jobs[idx].active;
-                localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
-                renderAdminJobs();
+                `).join('');
             }
-        };
 
-        window.editJob = function(id) {
-            const job = jobs.find(j => j.id === id);
-            if (!job) return;
-            editingJobId = id;
-            document.getElementById('jobId').value = job.id;
-            document.getElementById('jobTitle').value = job.title;
-            document.getElementById('jobLocation').value = job.location;
-            document.getElementById('jobType').value = job.type;
-            document.getElementById('jobDescription').value = job.description;
-            document.getElementById('jobRequirements').value = job.requirements ? job.requirements.join('\n') : '';
-            document.getElementById('jobFormBtn').textContent = 'Update Job';
-            document.getElementById('cancelEdit').style.display = 'inline-block';
-            switchTab('careers');
-            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector('.careers-tab[data-tab="addJob"]').classList.add('active');
-            document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
-            document.getElementById('addJobPanel').classList.add('active');
-        };
-
-        window.deleteJob = function(id) {
-            if (!confirm('Are you sure you want to delete this job posting?')) return;
-            const idx = jobs.findIndex(j => j.id === id);
-            if (idx > -1) {
-                jobs.splice(idx, 1);
-                localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
-                renderAdminJobs();
-            }
-        };
-
-        document.getElementById('jobForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const title = document.getElementById('jobTitle').value.trim();
-            const location = document.getElementById('jobLocation').value.trim();
-            const type = document.getElementById('jobType').value;
-            const description = document.getElementById('jobDescription').value.trim();
-            const requirementsRaw = document.getElementById('jobRequirements').value.trim();
-            const requirements = requirementsRaw ? requirementsRaw.split('\n').map(r => r.trim()).filter(r => r) : [];
-
-            if (editingJobId) {
-                const idx = jobs.findIndex(j => j.id === editingJobId);
-                if (idx > -1) {
-                    jobs[idx] = { ...jobs[idx], title, location, type, description, requirements };
+            function renderApplications() {
+                const container = $('applicationsList');
+                const noApps = $('noApplications');
+                if (!container) return;
+                if (applications.length === 0) {
+                    container.innerHTML = '';
+                    noApps.style.display = 'block';
+                    return;
                 }
-                editingJobId = null;
-                document.getElementById('jobFormBtn').textContent = 'Save Job';
-                document.getElementById('cancelEdit').style.display = 'none';
-            } else {
-                jobs.push({
-                    id: Date.now(),
-                    title,
-                    location,
-                    type,
-                    description,
-                    requirements,
-                    postedDate: new Date().toISOString(),
-                    active: true
+                noApps.style.display = 'none';
+                container.innerHTML = applications.slice().reverse().map(app => `
+                    <div class="app-item">
+                        <strong>${escapeHtml(app.name)}</strong> <span style="color: #94A3B8;">applied for</span> <strong style="color: #00B8D9;">${escapeHtml(app.position)}</strong>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:${escapeHtml(app.email)}">${escapeHtml(app.email)}</a> | <i class="fas fa-paperclip"></i> ${app.fileName ? escapeHtml(app.fileName) : 'No CV attached'}</p>
+                        <p style="font-size: 0.8rem; margin-top: 0.25rem;"><i class="fas fa-clock"></i> ${new Date(app.submittedAt).toLocaleString()}</p>
+                    </div>
+                `).join('');
+            }
+
+            function switchTab(tabName) {
+                document.querySelectorAll('.admin-panel').forEach(function (p) { p.classList.remove('active'); });
+                const panel = $(tabName + 'Panel');
+                if (panel) panel.classList.add('active');
+
+                document.querySelectorAll('.admin-nav a').forEach(function (a) { a.classList.remove('active'); });
+                const activeLink = document.querySelector('.admin-nav a[data-nav="' + tabName + '"]');
+                if (activeLink) activeLink.classList.add('active');
+
+                if (tabName === 'overview') {
+                    renderQuotesTable('quotesTable', quotes.slice(0, 5));
+                }
+                if (tabName === 'quotes') {
+                    renderQuotesTable('allQuotesTable', quotes);
+                }
+                if (tabName === 'careers') {
+                    renderAdminJobs();
+                    renderApplications();
+                }
+                if (tabName === 'users') {
+                    renderUsersTable();
+                }
+            }
+
+            document.querySelectorAll('.admin-nav a[data-nav]').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    switchTab(this.dataset.nav);
                 });
-            }
-            localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
-            document.getElementById('jobForm').reset();
-            renderAdminJobs();
-            switchTab('careers');
-            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector('.careers-tab[data-tab="viewJobs"]').classList.add('active');
-            document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
-            document.getElementById('viewJobsPanel').classList.add('active');
-        });
-
-        document.getElementById('cancelEdit').addEventListener('click', () => {
-            editingJobId = null;
-            document.getElementById('jobForm').reset();
-            document.getElementById('jobFormBtn').textContent = 'Save Job';
-            document.getElementById('cancelEdit').style.display = 'none';
-            switchTab('careers');
-            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector('.careers-tab[data-tab="viewJobs"]').classList.add('active');
-            document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
-            document.getElementById('viewJobsPanel').classList.add('active');
-        });
-
-        function renderApplications() {
-            const container = document.getElementById('applicationsList');
-            const noApps = document.getElementById('noApplications');
-            if (applications.length === 0) {
-                container.innerHTML = '';
-                noApps.style.display = 'block';
-                return;
-            }
-            noApps.style.display = 'none';
-            container.innerHTML = applications.slice().reverse().map(app => `
-                <div class="app-item">
-                    <strong>${escapeHtml(app.name)}</strong> <span style="color: var(--text-light);">applied for</span> <strong style="color: var(--primary-teal);">${escapeHtml(app.position)}</strong>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:${escapeHtml(app.email)}">${escapeHtml(app.email)}</a> | <i class="fas fa-paperclip"></i> ${app.fileName ? escapeHtml(app.fileName) : 'No CV attached'}</p>
-                    <p style="font-size: 0.8rem; margin-top: 0.25rem;"><i class="fas fa-clock"></i> ${new Date(app.submittedAt).toLocaleString()}</p>
-                </div>
-            `).join('');
-        }
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
-            const panelId = tabName + 'Panel';
-            const panel = document.getElementById(panelId);
-            if (panel) panel.classList.add('active');
-
-            if (tabName === 'overview') {
-                renderQuotesTable('quotesTable', quotes.slice(0, 5));
-            }
-            if (tabName === 'quotes') {
-                renderQuotesTable('allQuotesTable', quotes);
-            }
-            if (tabName === 'careers') {
-                renderAdminJobs();
-                renderApplications();
-            }
-            if (tabName === 'users') {
-                renderUsersTable();
-            }
-        }
-
-        document.querySelectorAll('.careers-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                switchTab('careers');
-                document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
-                const panelId = tab.dataset.tab === 'viewJobs' ? 'viewJobsPanel' : tab.dataset.tab === 'addJob' ? 'addJobPanel' : 'viewApplicationsPanel';
-                document.getElementById(panelId).classList.add('active');
-                if (tab.dataset.tab === 'viewApplications') renderApplications();
             });
-        });
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+            $('sidebarLogoutBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('mktech_current_user');
+                window.location.href = '/';
+            });
 
-        document.getElementById('sidebarLogoutBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('mktech_current_user');
-            window.location.href = '/';
-        });
+            $('statTotalQuotes').addEventListener('click', function () {
+                switchTab('quotes');
+            });
 
-        // Init
-        renderQuotesTable('quotesTable', quotes.slice(0, 5));
-        renderAdminJobs();
+            $('statPendingQuotes').addEventListener('click', function () {
+                switchTab('quotes');
+                renderQuotesTable('allQuotesTable', quotes.filter(function (q) { return q.status === 'pending'; }));
+            });
+
+            $('statTotalUsers').addEventListener('click', function () {
+                switchTab('users');
+            });
+
+            document.body.addEventListener('click', function (e) {
+                const action = e.target.closest('[data-action]');
+                if (!action) return;
+
+                const actionType = action.dataset.action;
+                const id = Number(action.dataset.id);
+
+                if (actionType === 'view-quote') {
+                    const q = quotes.find(function (quote) { return quote.id === id; });
+                    if (!q) return;
+                    $('quoteModalBody').innerHTML = `
+                        <div style="display: grid; gap: 1rem;">
+                            <p><strong>Name:</strong> ${escapeHtml(q.name || '-')}</p>
+                            <p><strong>Email:</strong> ${escapeHtml(q.email || '-')}</p>
+                            <p><strong>Phone:</strong> ${escapeHtml(q.phone || '-')}</p>
+                            <p><strong>Service:</strong> ${escapeHtml(q.service || 'General')}</p>
+                            <p><strong>Status:</strong> <span class="status-badge ${q.status === 'pending' ? 'status-pending' : q.status === 'approved' ? 'status-approved' : 'status-declined'}">${q.status}</span></p>
+                            <p><strong>Message:</strong></p>
+                            <p style="background: #F8FAFC; padding: 1rem; border-radius: 10px; color: #64748B;">${escapeHtml(q.message || 'No message provided.')}</p>
+                            <p style="font-size: 0.85rem; color: #94A3B8;"><i class="fas fa-clock"></i> Submitted: ${new Date(q.createdAt).toLocaleString()}</p>
+                        </div>
+                    `;
+                    $('quoteModal').classList.add('active');
+                }
+
+                if (actionType === 'approve-quote') {
+                    updateQuoteStatus(id, 'approved');
+                }
+
+                if (actionType === 'decline-quote') {
+                    updateQuoteStatus(id, 'declined');
+                }
+
+                if (actionType === 'toggle-job') {
+                    const idx = jobs.findIndex(function (j) { return j.id === id; });
+                    if (idx > -1) {
+                        jobs[idx].active = !jobs[idx].active;
+                        localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
+                        renderAdminJobs();
+                    }
+                }
+
+                if (actionType === 'edit-job') {
+                    const job = jobs.find(function (j) { return j.id === id; });
+                    if (!job) return;
+                    editingJobId = id;
+                    $('jobId').value = job.id;
+                    $('jobTitle').value = job.title;
+                    $('jobLocation').value = job.location;
+                    $('jobType').value = job.type;
+                    $('jobDescription').value = job.description;
+                    $('jobRequirements').value = job.requirements ? job.requirements.join('\n') : '';
+                    $('jobFormBtn').textContent = 'Update Job';
+                    $('cancelEdit').style.display = 'inline-block';
+                    switchTab('careers');
+                    document.querySelectorAll('.careers-tab').forEach(function (t) { t.classList.remove('active'); });
+                    document.querySelector('.careers-tab[data-tab="addJob"]').classList.add('active');
+                    document.querySelectorAll('.careers-panel').forEach(function (p) { p.classList.remove('active'); });
+                    $('addJobPanel').classList.add('active');
+                }
+
+                if (actionType === 'delete-job') {
+                    if (!confirm('Are you sure you want to delete this job posting?')) return;
+                    const idx = jobs.findIndex(function (j) { return j.id === id; });
+                    if (idx > -1) {
+                        jobs.splice(idx, 1);
+                        localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
+                        renderAdminJobs();
+                    }
+                }
+            });
+
+            function updateQuoteStatus(id, status) {
+                const idx = quotes.findIndex(function (q) { return q.id === id; });
+                if (idx > -1) {
+                    quotes[idx].status = status;
+                    localStorage.setItem('mktech_quotes', JSON.stringify(quotes));
+                    renderQuotesTable('quotesTable', quotes.slice(0, 5));
+                    renderQuotesTable('allQuotesTable', quotes);
+                    $('totalQuotes').textContent = quotes.length;
+                    $('pendingQuotes').textContent = quotes.filter(function (q) { return q.status === 'pending'; }).length;
+                }
+            }
+
+            $('modalCloseBtn').addEventListener('click', function () {
+                $('quoteModal').classList.remove('active');
+            });
+
+            $('quoteModal').addEventListener('click', function (e) {
+                if (e.target === $('quoteModal')) $('quoteModal').classList.remove('active');
+            });
+
+            $('jobForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const title = $('jobTitle').value.trim();
+                const location = $('jobLocation').value.trim();
+                const type = $('jobType').value;
+                const description = $('jobDescription').value.trim();
+                const requirementsRaw = $('jobRequirements').value.trim();
+                const requirements = requirementsRaw ? requirementsRaw.split('\n').map(function (r) { return r.trim(); }).filter(function (r) { return r; }) : [];
+
+                if (editingJobId) {
+                    const idx = jobs.findIndex(function (j) { return j.id === editingJobId; });
+                    if (idx > -1) {
+                        jobs[idx] = Object.assign({}, jobs[idx], { title: title, location: location, type: type, description: description, requirements: requirements });
+                    }
+                    editingJobId = null;
+                    $('jobFormBtn').textContent = 'Save Job';
+                    $('cancelEdit').style.display = 'none';
+                } else {
+                    jobs.push({
+                        id: Date.now(),
+                        title: title,
+                        location: location,
+                        type: type,
+                        description: description,
+                        requirements: requirements,
+                        postedDate: new Date().toISOString(),
+                        active: true
+                    });
+                }
+                localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
+                $('jobForm').reset();
+                renderAdminJobs();
+                switchTab('careers');
+                document.querySelectorAll('.careers-tab').forEach(function (t) { t.classList.remove('active'); });
+                document.querySelector('.careers-tab[data-tab="viewJobs"]').classList.add('active');
+                document.querySelectorAll('.careers-panel').forEach(function (p) { p.classList.remove('active'); });
+                $('viewJobsPanel').classList.add('active');
+            });
+
+            $('cancelEdit').addEventListener('click', function () {
+                editingJobId = null;
+                $('jobForm').reset();
+                $('jobFormBtn').textContent = 'Save Job';
+                $('cancelEdit').style.display = 'none';
+                switchTab('careers');
+                document.querySelectorAll('.careers-tab').forEach(function (t) { t.classList.remove('active'); });
+                document.querySelector('.careers-tab[data-tab="viewJobs"]').classList.add('active');
+                document.querySelectorAll('.careers-panel').forEach(function (p) { p.classList.remove('active'); });
+                $('viewJobsPanel').classList.add('active');
+            });
+
+            document.querySelectorAll('.careers-tab').forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    switchTab('careers');
+                    document.querySelectorAll('.careers-tab').forEach(function (t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    document.querySelectorAll('.careers-panel').forEach(function (p) { p.classList.remove('active'); });
+                    const panelId = tab.dataset.tab === 'viewJobs' ? 'viewJobsPanel' : tab.dataset.tab === 'addJob' ? 'addJobPanel' : 'viewApplicationsPanel';
+                    const panel = $(panelId);
+                    if (panel) panel.classList.add('active');
+                    if (tab.dataset.tab === 'viewApplications') renderApplications();
+                });
+            });
+
+            renderQuotesTable('quotesTable', quotes.slice(0, 5));
+            renderAdminJobs();
+        })();
     </script>
 
     <script type="module" src="/src/main.js"></script>

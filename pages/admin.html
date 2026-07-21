@@ -530,6 +530,17 @@
 
             <!-- Overview Panel -->
             <div id="overviewPanel" class="admin-panel active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2 style="margin: 0; font-size: 1.1rem; font-weight: 600; color: #64748B;">Command Center</h2>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem; font-weight: 700;" data-action="quick-post-job">
+                            <i class="fas fa-plus"></i> Post New Job
+                        </button>
+                        <button class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.85rem; font-weight: 700; color: #0F1B2E; border-color: #E2E8F0;" data-action="export-quotes">
+                            <i class="fas fa-download"></i> Export Quotes
+                        </button>
+                    </div>
+                </div>
                 <div class="stat-grid">
                     <div class="stat-card" id="statTotalQuotes">
                         <div class="stat-icon" style="background: rgba(0, 229, 255, 0.1); color: #00B8D9;">
@@ -554,9 +565,15 @@
                     </div>
                 </div>
 
-                <div class="admin-content-card">
-                    <h2><i class="fas fa-file-alt" style="color: #00B8D9; margin-right: 0.5rem;"></i> Recent Quote Requests</h2>
-                    <div id="quotesTable"></div>
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+                    <div class="admin-content-card">
+                        <h2><i class="fas fa-file-alt" style="color: #00B8D9; margin-right: 0.5rem;"></i> Recent Quote Requests</h2>
+                        <div id="quotesTable"></div>
+                    </div>
+                    <div class="admin-content-card">
+                        <h2><i class="fas fa-history" style="color: #00B8D9; margin-right: 0.5rem;"></i> Recent Activity</h2>
+                        <div id="activityLog" style="max-height: 400px; overflow-y: auto;"></div>
+                    </div>
                 </div>
             </div>
 
@@ -564,6 +581,12 @@
             <div id="quotesPanel" class="admin-panel">
                 <div class="admin-content-card">
                     <h2><i class="fas fa-file-alt" style="color: #00B8D9; margin-right: 0.5rem;"></i> All Quote Requests</h2>
+                    <div class="admin-tabs" style="margin-bottom: 1.5rem;">
+                        <button class="admin-tab active" data-filter="all">All</button>
+                        <button class="admin-tab" data-filter="pending">Pending</button>
+                        <button class="admin-tab" data-filter="approved">Approved</button>
+                        <button class="admin-tab" data-filter="declined">Declined</button>
+                    </div>
                     <div id="allQuotesTable"></div>
                 </div>
             </div>
@@ -601,6 +624,8 @@
                             <textarea id="jobDescription" required placeholder="Describe the role and responsibilities..."></textarea>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0F1B2E;">Requirements (one per line)</label>
                             <textarea id="jobRequirements" placeholder="- Minimum 3 years experience&#10;- Valid drivers license&#10;- HVAC certification preferred"></textarea>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0F1B2E;">Closing Date (optional)</label>
+                            <input type="date" id="jobClosingDate" style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #E2E8F0; border-radius: 10px; margin-bottom: 1rem; font-size: 1rem;">
                             <button type="submit" class="btn btn-primary" style="font-weight: 700;"><i class="fas fa-save"></i> <span id="jobFormBtn">Save Job</span></button>
                             <button type="button" id="cancelEdit" class="btn btn-outline" style="margin-left: 1rem; display: none; color: #0F1B2E; border-color: #E2E8F0; font-weight: 700;">Cancel</button>
                         </form>
@@ -656,6 +681,25 @@
                 const div = document.createElement('div');
                 div.textContent = text;
                 return div.innerHTML;
+            }
+
+            function logActivity(message) {
+                const log = JSON.parse(localStorage.getItem('mktech_activity_log') || '[]');
+                log.unshift({ message: message, timestamp: new Date().toISOString() });
+                localStorage.setItem('mktech_activity_log', JSON.stringify(log.slice(0, 50)));
+            }
+
+            function renderActivityLog() {
+                const container = $('activityLog');
+                if (!container) return;
+                const log = JSON.parse(localStorage.getItem('mktech_activity_log') || '[]');
+                if (log.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: #94A3B8; padding: 2rem;">No activity yet.</p>';
+                    return;
+                }
+                container.innerHTML = log.slice(0, 20).map(function (entry) {
+                    return '<div style="padding: 0.75rem; border-bottom: 1px solid #F1F5F9; font-size: 0.9rem; color: #64748B;"><i class="fas fa-circle" style="font-size: 0.4rem; color: #00B8D9; margin-right: 0.5rem; vertical-align: middle;"></i>' + escapeHtml(entry.message) + '<div style="font-size: 0.75rem; color: #94A3B8; margin-top: 0.25rem; margin-left: 1rem;">' + new Date(entry.timestamp).toLocaleString() + '</div></div>';
+                }).join('');
             }
 
             function renderQuotesTable(containerId, quoteList) {
@@ -744,24 +788,25 @@
                     return;
                 }
                 noJobs.style.display = 'none';
-                container.innerHTML = jobs.map(job => `
-                    <div class="job-item">
-                        <div style="flex: 1;">
-                            <h4>${escapeHtml(job.title)} ${job.active === false ? '<span style="color: #94A3B8; font-size: 0.85rem;">(Inactive)</span>' : ''}</h4>
-                            <p><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location)} | <i class="fas fa-briefcase"></i> ${escapeHtml(job.type)} | Posted ${new Date(job.postedDate).toLocaleDateString()}</p>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <label class="toggle-switch" title="Toggle Active/Inactive">
-                                <input type="checkbox" ${job.active !== false ? 'checked' : ''} data-action="toggle-job" data-id="${job.id}">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <div class="job-actions">
-                                <button class="btn-sm btn-edit" data-action="edit-job" data-id="${job.id}"><i class="fas fa-edit"></i></button>
-                                <button class="btn-sm btn-delete" data-action="delete-job" data-id="${job.id}"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
+                container.innerHTML = jobs.map(function (job) {
+                    const closingText = job.closingDate ? '<span style="color: #64748B; font-size: 0.85rem; margin-left: 0.5rem;"><i class="fas fa-calendar-times"></i> Closes: ' + new Date(job.closingDate).toLocaleDateString() + '</span>' : '';
+                    return '<div class="job-item">' +
+                        '<div style="flex: 1;">' +
+                            '<h4>' + escapeHtml(job.title) + (job.active === false ? ' <span style="color: #94A3B8; font-size: 0.85rem;">(Inactive)</span>' : '') + closingText + '</h4>' +
+                            '<p><i class="fas fa-map-marker-alt"></i> ' + escapeHtml(job.location) + ' | <i class="fas fa-briefcase"></i> ' + escapeHtml(job.type) + ' | Posted ' + new Date(job.postedDate).toLocaleDateString() + '</p>' +
+                        '</div>' +
+                        '<div style="display: flex; align-items: center; gap: 1rem;">' +
+                            '<label class="toggle-switch" title="Toggle Active/Inactive">' +
+                                '<input type="checkbox" ' + (job.active !== false ? 'checked' : '') + ' data-action="toggle-job" data-id="' + job.id + '">' +
+                                '<span class="toggle-slider"></span>' +
+                            '</label>' +
+                            '<div class="job-actions">' +
+                                '<button class="btn-sm btn-edit" data-action="edit-job" data-id="' + job.id + '"><i class="fas fa-edit"></i></button>' +
+                                '<button class="btn-sm btn-delete" data-action="delete-job" data-id="' + job.id + '"><i class="fas fa-trash"></i></button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
             }
 
             function renderApplications() {
@@ -774,13 +819,27 @@
                     return;
                 }
                 noApps.style.display = 'none';
-                container.innerHTML = applications.slice().reverse().map(app => `
-                    <div class="app-item">
-                        <strong>${escapeHtml(app.name)}</strong> <span style="color: #94A3B8;">applied for</span> <strong style="color: #00B8D9;">${escapeHtml(app.position)}</strong>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:${escapeHtml(app.email)}">${escapeHtml(app.email)}</a> | <i class="fas fa-paperclip"></i> ${app.fileName ? escapeHtml(app.fileName) : 'No CV attached'}</p>
-                        <p style="font-size: 0.8rem; margin-top: 0.25rem;"><i class="fas fa-clock"></i> ${new Date(app.submittedAt).toLocaleString()}</p>
-                    </div>
-                `).join('');
+                container.innerHTML = applications.slice().reverse().map(function (app) {
+                    const statuses = ['Submitted', 'Shortlisted', 'Interviewing', 'Rejected'];
+                    const currentStatus = app.pipelineStatus || 'Submitted';
+                    return '<div class="app-item">' +
+                        '<div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 0.5rem;">' +
+                            '<div><strong>' + escapeHtml(app.name) + '</strong> <span style="color: #94A3B8;">applied for</span> <strong style="color: #00B8D9;">' + escapeHtml(app.position) + '</strong>' +
+                            '<p><i class="fas fa-envelope"></i> <a href="mailto:' + escapeHtml(app.email) + '">' + escapeHtml(app.email) + '</a> | <i class="fas fa-paperclip"></i> ' + (app.fileName ? escapeHtml(app.fileName) : 'No CV attached') + '</p>' +
+                            '<p style="font-size: 0.8rem; margin-top: 0.25rem;"><i class="fas fa-clock"></i> ' + new Date(app.submittedAt).toLocaleString() + '</p></div>' +
+                            '<div style="display: flex; align-items: center; gap: 0.5rem;">' +
+                                '<select data-action="update-app-status" data-id="' + app.id + '" style="padding: 0.4rem 0.6rem; border-radius: 8px; border: 1px solid #E2E8F0; font-size: 0.85rem; background: white; cursor: pointer;">' +
+                                    statuses.map(function (s) { return '<option value="' + s + '" ' + (currentStatus === s ? 'selected' : '') + '>' + s + '</option>'; }).join('') +
+                                '</select>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
+            }
+
+            function addActivity(message) {
+                logActivity(message);
+                renderActivityLog();
             }
 
             function switchTab(tabName) {
@@ -794,6 +853,7 @@
 
                 if (tabName === 'overview') {
                     renderQuotesTable('quotesTable', quotes.slice(0, 5));
+                    renderActivityLog();
                 }
                 if (tabName === 'quotes') {
                     renderQuotesTable('allQuotesTable', quotes);
@@ -834,6 +894,32 @@
             });
 
             document.body.addEventListener('click', function (e) {
+                const quickAction = e.target.closest('[data-action="quick-post-job"]');
+                if (quickAction) {
+                    switchTab('careers');
+                    document.querySelectorAll('.careers-tab').forEach(function (t) { t.classList.remove('active'); });
+                    document.querySelector('.careers-tab[data-tab="addJob"]').classList.add('active');
+                    document.querySelectorAll('.careers-panel').forEach(function (p) { p.classList.remove('active'); });
+                    $('addJobPanel').classList.add('active');
+                    $('jobTitle').focus();
+                }
+
+                if (e.target.closest('[data-action="export-quotes"]')) {
+                    const headers = ['ID', 'Name', 'Email', 'Service', 'Status', 'Date'];
+                    const rows = quotes.map(function (q) {
+                        return [q.id, q.name || '-', q.email || '-', q.service || 'General', q.status, new Date(q.createdAt).toLocaleDateString()];
+                    });
+                    let csv = headers.join(',') + '\n';
+                    rows.forEach(function (r) { csv += r.join(',') + '\n'; });
+                    const blob = new Blob([csv], { type: 'text/csv' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'quotes-' + new Date().toISOString().slice(0, 10) + '.csv';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    addActivity('Exported quotes to CSV');
+                }
                 const action = e.target.closest('[data-action]');
                 if (!action) return;
 
@@ -885,6 +971,7 @@
                     $('jobType').value = job.type;
                     $('jobDescription').value = job.description;
                     $('jobRequirements').value = job.requirements ? job.requirements.join('\n') : '';
+                    $('jobClosingDate').value = job.closingDate || '';
                     $('jobFormBtn').textContent = 'Update Job';
                     $('cancelEdit').style.display = 'inline-block';
                     switchTab('careers');
@@ -901,6 +988,17 @@
                         jobs.splice(idx, 1);
                         localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
                         renderAdminJobs();
+                        addActivity('Deleted job: ' + (jobs[idx] ? jobs[idx].title : 'Unknown'));
+                    }
+                }
+
+                if (actionType === 'update-app-status') {
+                    const appIdx = applications.findIndex(function (a) { return a.id === id; });
+                    if (appIdx > -1) {
+                        applications[appIdx].pipelineStatus = action.value;
+                        localStorage.setItem('mktech_applications', JSON.stringify(applications));
+                        renderApplications();
+                        addActivity('Updated applicant ' + applications[appIdx].name + ' to ' + action.value);
                     }
                 }
             });
@@ -914,8 +1012,22 @@
                     renderQuotesTable('allQuotesTable', quotes);
                     $('totalQuotes').textContent = quotes.length;
                     $('pendingQuotes').textContent = quotes.filter(function (q) { return q.status === 'pending'; }).length;
+                    addActivity('Updated quote #' + id + ' to ' + status);
                 }
             }
+
+            document.querySelectorAll('.admin-tab[data-filter]').forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    document.querySelectorAll('.admin-tab[data-filter]').forEach(function (t) { t.classList.remove('active'); });
+                    tab.classList.add('active');
+                    const filter = tab.dataset.filter;
+                    if (filter === 'all') {
+                        renderQuotesTable('allQuotesTable', quotes);
+                    } else {
+                        renderQuotesTable('allQuotesTable', quotes.filter(function (q) { return q.status === filter; }));
+                    }
+                });
+            });
 
             $('modalCloseBtn').addEventListener('click', function () {
                 $('quoteModal').classList.remove('active');
@@ -933,11 +1045,12 @@
                 const description = $('jobDescription').value.trim();
                 const requirementsRaw = $('jobRequirements').value.trim();
                 const requirements = requirementsRaw ? requirementsRaw.split('\n').map(function (r) { return r.trim(); }).filter(function (r) { return r; }) : [];
+                const closingDate = $('jobClosingDate').value;
 
                 if (editingJobId) {
                     const idx = jobs.findIndex(function (j) { return j.id === editingJobId; });
                     if (idx > -1) {
-                        jobs[idx] = Object.assign({}, jobs[idx], { title: title, location: location, type: type, description: description, requirements: requirements });
+                        jobs[idx] = Object.assign({}, jobs[idx], { title: title, location: location, type: type, description: description, requirements: requirements, closingDate: closingDate });
                     }
                     editingJobId = null;
                     $('jobFormBtn').textContent = 'Save Job';
@@ -951,22 +1064,26 @@
                         description: description,
                         requirements: requirements,
                         postedDate: new Date().toISOString(),
-                        active: true
+                        active: true,
+                        closingDate: closingDate
                     });
                 }
                 localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
                 $('jobForm').reset();
+                $('jobClosingDate').value = '';
                 renderAdminJobs();
                 switchTab('careers');
                 document.querySelectorAll('.careers-tab').forEach(function (t) { t.classList.remove('active'); });
                 document.querySelector('.careers-tab[data-tab="viewJobs"]').classList.add('active');
                 document.querySelectorAll('.careers-panel').forEach(function (p) { p.classList.remove('active'); });
                 $('viewJobsPanel').classList.add('active');
+                addActivity(editingJobId ? 'Updated job: ' + title : 'Created new job: ' + title);
             });
 
             $('cancelEdit').addEventListener('click', function () {
                 editingJobId = null;
                 $('jobForm').reset();
+                $('jobClosingDate').value = '';
                 $('jobFormBtn').textContent = 'Save Job';
                 $('cancelEdit').style.display = 'none';
                 switchTab('careers');
@@ -991,6 +1108,7 @@
 
             renderQuotesTable('quotesTable', quotes.slice(0, 5));
             renderAdminJobs();
+            renderActivityLog();
         })();
     </script>
 

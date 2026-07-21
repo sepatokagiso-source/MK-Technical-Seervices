@@ -25,6 +25,253 @@
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            background: var(--bg-dark);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .admin-sidebar .logo-area {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-sidebar .logo-area img {
+            height: 32px;
+            filter: brightness(0) invert(1);
+        }
+
+        .admin-sidebar .logo-area .logo-text-sidebar {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white;
+            margin-top: 0.5rem;
+            letter-spacing: 0.03em;
+        }
+
+        .admin-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .admin-nav li a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .admin-nav li a:hover,
+        .admin-nav li a.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-left-color: var(--primary-teal);
+        }
+
+        .admin-nav li a i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .admin-main {
+            grid-column: 2;
+            padding: 2rem 3rem;
+            background: var(--bg-light);
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .admin-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .admin-header .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .admin-header .admin-user .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-card .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .admin-content-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+
+        .admin-content-card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .data-table tr:hover td {
+            background: var(--bg-light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-declined {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        .btn-xs {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 0.35rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .btn-view {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-approve {
+            background: #28A745;
+            color: white;
+        }
+
+        .btn-decline {
+            background: #DC3545;
+            color: white;
+        }
+
         .admin-tabs {
             display: flex;
             gap: 0.25rem;
@@ -34,6 +281,7 @@
             border-radius: var(--radius-lg);
             width: fit-content;
         }
+
         .admin-tab {
             padding: 0.75rem 1.75rem;
             cursor: pointer;
@@ -48,174 +296,280 @@
             text-transform: uppercase;
             letter-spacing: 0.03em;
         }
+
         .admin-tab:hover {
             color: var(--text-dark);
             background: rgba(255, 255, 255, 0.6);
         }
+
         .admin-tab.active {
             background: white;
             color: var(--primary-teal);
             box-shadow: var(--shadow-sm);
         }
+
         .admin-panel {
             display: none;
             animation: fadeIn 0.35s ease;
         }
+
         .admin-panel.active {
             display: block;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: var(--radius-md);
+
+        .careers-tabs {
             display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-subtle);
+        }
+
+        .careers-tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .careers-tab.active {
+            color: var(--primary-teal);
+            border-bottom-color: var(--primary-teal);
+        }
+
+        .careers-panel {
+            display: none;
+        }
+
+        .careers-panel.active {
+            display: block;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .job-form { max-width: 700px; }
+        .job-form input, .job-form textarea, .job-form select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .job-form textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: var(--font-body);
+        }
+        .job-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-teal);
+            box-shadow: var(--shadow-sm);
+        }
+        .job-item h4 { margin-bottom: 0.25rem; color: var(--text-dark); }
+        .job-item p { color: var(--text-secondary); font-size: 0.9rem; margin: 0; }
+        .job-actions { display: flex; gap: 0.5rem; }
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-edit { background: var(--primary-blue); color: white; }
+        .btn-delete { background: #dc3545; color: white; }
+        .application-list { margin-top: 1.5rem; }
+        .app-item {
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--primary-teal);
+        }
+        .app-item strong { color: var(--text-dark); }
+        .app-item p { margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.9rem; }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 26px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider { background-color: var(--primary-teal); }
+        input:checked + .toggle-slider:before { transform: translateX(24px); }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            padding: 2rem;
+            overflow-y: auto;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.75rem;
         }
-        .stat-card h3 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-        .stat-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        .data-table {
+        .modal.active { display: flex; }
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-xl);
+            max-width: 600px;
             width: 100%;
-            border-collapse: collapse;
+            padding: 2.5rem;
+            position: relative;
+            animation: slideUp 0.4s ease;
         }
-        .data-table th {
-            text-align: left;
-            padding: 1rem;
-            border-bottom: 2px solid var(--bg-light);
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            cursor: pointer;
             color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
-        .data-table td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--bg-light);
-            color: var(--text-dark);
+        .modal-close:hover { color: var(--primary-teal); }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .data-table tr:hover td {
-            background: var(--bg-light);
+
+        @media (max-width: 1024px) {
+            .admin-layout { grid-template-columns: 1fr; }
+            .admin-sidebar { display: none; }
+            .admin-main { grid-column: 1; padding: 2rem; }
+            .stat-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    <nav class="navbar site-header">
-        <div class="nav-container">
-            <div class="nav-left">
-                <a href="/" class="logo-link">
-                    <img src="/media/logo.png" alt="MK Technical Services" class="logo">
-                    <span class="logo-text">Technical Services</span>
-                </a>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="logo-area">
+                <img src="/media/logo.png" alt="MK Technical Services">
+                <div class="logo-text-sidebar">Admin Panel</div>
             </div>
-
-            <ul class="nav-menu">
-                <li><a href="/" class="nav-link">Home</a></li>
-                <li><a href="/pages/admin.html" class="nav-link active">Admin</a></li>
-                <li><a href="/pages/careers.html">Careers</a></li>
-                <li><a href="/pages/contact.html">Request Quote</a></li>
-                <li><a href="#" id="logoutBtn" class="btn btn-secondary" style="padding: 0.5rem 1.5rem;">Logout</a></li>
+            <ul class="admin-nav">
+                <li><a href="#" class="active" data-nav="overview"><i class="fas fa-th-large"></i> Overview</a></li>
+                <li><a href="#" data-nav="quotes"><i class="fas fa-file-alt"></i> Quotes</a></li>
+                <li><a href="#" data-nav="careers"><i class="fas fa-briefcase"></i> Careers</a></li>
+                <li><a href="#" data-nav="users"><i class="fas fa-users"></i> Users</a></li>
+                <li style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem;">
+                    <a href="/"><i class="fas fa-arrow-left"></i> Back to Site</a>
+                </li>
+                <li>
+                    <a href="#" id="sidebarLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
             </ul>
+        </aside>
 
-            <button class="dark-mode-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                <i class="fas fa-moon icon-moon"></i>
-                <i class="fas fa-sun icon-sun"></i>
-            </button>
-
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <section id="main" class="section" style="padding-top: 120px;">
-        <div class="container">
-            <div style="margin-bottom: 2rem;">
+        <!-- Main -->
+        <main class="admin-main">
+            <div class="admin-header">
                 <h1>Admin Dashboard</h1>
-                <p style="color: var(--text-secondary);">Manage quotes, appointments, and system settings</p>
+                <div class="admin-user">
+                    <div class="user-avatar">A</div>
+                    <span style="font-weight: 600; color: var(--text-dark);">Admin</span>
+                </div>
             </div>
 
-            <div class="grid grid-3" style="margin-bottom: 3rem;">
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(0, 229, 255, 0.1); color: var(--primary-teal);">
-                        <i class="fas fa-file-alt"></i>
+            <!-- Overview Panel -->
+            <div id="overviewPanel" class="admin-panel active">
+                <div class="stat-grid">
+                    <div class="stat-card" onclick="scrollToSection('quotesTable')">
+                        <div class="stat-icon" style="background: rgba(0, 229, 255, 0.1); color: var(--primary-teal);">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 id="totalQuotes">0</h3>
+                        <p>Total Quotes</p>
                     </div>
-                    <h3 id="totalQuotes">0</h3>
-                    <p>Total Quotes</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(0, 82, 255, 0.1); color: var(--primary-blue);">
-                        <i class="fas fa-calendar-check"></i>
+                    <div class="stat-card" onclick="filterQuotesByStatus('pending')">
+                        <div class="stat-icon" style="background: rgba(0, 82, 255, 0.1); color: var(--primary-blue);">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 id="pendingQuotes">0</h3>
+                        <p>Pending Quotes</p>
                     </div>
-                    <h3 id="pendingQuotes">0</h3>
-                    <p>Pending Quotes</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(255, 107, 53, 0.1); color: var(--cta-orange);">
-                        <i class="fas fa-users"></i>
+                    <div class="stat-card" onclick="switchTab('users')">
+                        <div class="stat-icon" style="background: rgba(255, 107, 53, 0.1); color: var(--cta-orange);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 id="totalUsers">0</h3>
+                        <p>Total Users</p>
                     </div>
-                    <h3 id="totalUsers">0</h3>
-                    <p>Total Users</p>
+                </div>
+
+                <div class="admin-content-card">
+                    <h2><i class="fas fa-file-alt" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> Recent Quote Requests</h2>
+                    <div id="quotesTable"></div>
                 </div>
             </div>
 
-            <div class="admin-tabs">
-                <button class="admin-tab active" data-admin-tab="quotes">Quotes</button>
-                <button class="admin-tab" data-admin-tab="careers">Careers</button>
-            </div>
-
-            <div id="quotesPanel" class="admin-panel active">
-                <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
-                    <h2 style="margin-bottom: 1.5rem;">Recent Quote Requests</h2>
-                    <div id="adminQuotesTable"></div>
+            <!-- Quotes Panel -->
+            <div id="quotesPanel" class="admin-panel">
+                <div class="admin-content-card">
+                    <h2><i class="fas fa-file-alt" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> All Quote Requests</h2>
+                    <div id="allQuotesTable"></div>
                 </div>
             </div>
 
+            <!-- Careers Panel -->
             <div id="careersPanel" class="admin-panel">
-                <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
-                    <h2 style="margin-bottom: 1.5rem;"><i class="fas fa-briefcase"></i> Careers Management</h2>
+                <div class="admin-content-card">
+                    <h2><i class="fas fa-briefcase" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> Careers Management</h2>
                     <div class="careers-tabs">
                         <div class="careers-tab active" data-tab="viewJobs">Job Postings</div>
                         <div class="careers-tab" data-tab="addJob">Add / Edit Job</div>
                         <div class="careers-tab" data-tab="viewApplications">Applications</div>
                     </div>
 
-                    <div id="viewJobsPanel" class="careers-panel">
+                    <div id="viewJobsPanel" class="careers-panel active">
                         <div id="adminJobsList"></div>
                         <p id="noAdminJobs" class="text-center" style="color: var(--text-secondary); display: none;">No job postings yet.</p>
                     </div>
 
-                    <div id="addJobPanel" class="careers-panel" style="display: none;">
+                    <div id="addJobPanel" class="careers-panel">
                         <form id="jobForm" class="job-form">
                             <input type="hidden" id="jobId">
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Job Title</label>
@@ -238,14 +592,31 @@
                         </form>
                     </div>
 
-                    <div id="viewApplicationsPanel" class="careers-panel" style="display: none;">
+                    <div id="viewApplicationsPanel" class="careers-panel">
                         <div id="applicationsList" class="application-list"></div>
                         <p id="noApplications" class="text-center" style="color: var(--text-secondary);">No applications received yet.</p>
                     </div>
                 </div>
             </div>
+
+            <!-- Users Panel -->
+            <div id="usersPanel" class="admin-panel">
+                <div class="admin-content-card">
+                    <h2><i class="fas fa-users" style="color: var(--primary-teal); margin-right: 0.5rem;"></i> Registered Users</h2>
+                    <div id="usersTable"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Quote Detail Modal -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('quoteModal')">&times;</button>
+            <h2 style="margin-bottom: 1.5rem; color: var(--text-dark);">Quote Details</h2>
+            <div id="quoteModalBody"></div>
         </div>
-    </section>
+    </div>
 
     <script type="module">
         const currentUser = localStorage.getItem('mktech_current_user');
@@ -255,16 +626,21 @@
 
         const quotes = JSON.parse(localStorage.getItem('mktech_quotes') || '[]');
         const users = JSON.parse(localStorage.getItem('mktech_users') || '[]');
+        const jobs = JSON.parse(localStorage.getItem('mktech_jobs') || '[]');
+        const applications = JSON.parse(localStorage.getItem('mktech_applications') || '[]');
+        let editingJobId = null;
 
         document.getElementById('totalQuotes').textContent = quotes.length;
         document.getElementById('pendingQuotes').textContent = quotes.filter(q => q.status === 'pending').length;
         document.getElementById('totalUsers').textContent = users.length;
 
-        const table = document.getElementById('adminQuotesTable');
-        if (quotes.length === 0) {
-            table.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No quotes yet.</p>';
-        } else {
-            table.innerHTML = `
+        function renderQuotesTable(containerId, quoteList) {
+            const container = document.getElementById(containerId);
+            if (quoteList.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No quotes found.</p>';
+                return;
+            }
+            container.innerHTML = `
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -274,19 +650,27 @@
                             <th>Service</th>
                             <th>Status</th>
                             <th>Date</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        ${quotes.slice(0, 10).map(q => `
+                        ${quoteList.slice(0, 20).map(q => `
                             <tr>
                                 <td>${q.id}</td>
                                 <td>${q.name || '-'}</td>
                                 <td>${q.email || '-'}</td>
                                 <td>${q.service || 'General'}</td>
                                 <td>
-                                    <span style="padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; background: ${q.status === 'pending' ? '#FFF3CD' : q.status === 'approved' ? '#D4EDDA' : '#D1ECF1'}; color: ${q.status === 'pending' ? '#856404' : q.status === 'approved' ? '#155724' : '#0C5460'};">${q.status}</span>
+                                    <span class="status-badge ${q.status === 'pending' ? 'status-pending' : q.status === 'approved' ? 'status-approved' : 'status-declined'}">${q.status}</span>
                                 </td>
                                 <td>${new Date(q.createdAt).toLocaleDateString()}</td>
+                                <td>
+                                    <button class="btn-xs btn-view" onclick="viewQuote(${q.id})"><i class="fas fa-eye"></i> View</button>
+                                    ${q.status === 'pending' ? `
+                                        <button class="btn-xs btn-approve" onclick="updateQuoteStatus(${q.id}, 'approved')"><i class="fas fa-check"></i></button>
+                                        <button class="btn-xs btn-decline" onclick="updateQuoteStatus(${q.id}, 'declined')"><i class="fas fa-times"></i></button>
+                                    ` : ''}
+                                </td>
                             </tr>
                         `).join('')}
                     </tbody>
@@ -294,21 +678,114 @@
             `;
         }
 
-        // ===== Admin Tab Switching =====
-        document.querySelectorAll('.admin-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById(tab.dataset.adminTab + 'Panel').classList.add('active');
+        window.viewQuote = function(id) {
+            const q = quotes.find(quote => quote.id === id);
+            if (!q) return;
+            const modalBody = document.getElementById('quoteModalBody');
+            modalBody.innerHTML = `
+                <div style="display: grid; gap: 1rem;">
+                    <p><strong>Name:</strong> ${q.name || '-'}</p>
+                    <p><strong>Email:</strong> ${q.email || '-'}</p>
+                    <p><strong>Phone:</strong> ${q.phone || '-'}</p>
+                    <p><strong>Service:</strong> ${q.service || 'General'}</p>
+                    <p><strong>Status:</strong> <span class="status-badge ${q.status === 'pending' ? 'status-pending' : q.status === 'approved' ? 'status-approved' : 'status-declined'}">${q.status}</span></p>
+                    <p><strong>Message:</strong></p>
+                    <p style="background: var(--bg-light); padding: 1rem; border-radius: var(--radius-md); color: var(--text-secondary);">${q.message || 'No message provided.'}</p>
+                    <p style="font-size: 0.85rem; color: var(--text-light);"><i class="fas fa-clock"></i> Submitted: ${new Date(q.createdAt).toLocaleString()}</p>
+                </div>
+            `;
+            document.getElementById('quoteModal').classList.add('active');
+        };
+
+        window.closeModal = function(id) {
+            document.getElementById(id).classList.remove('active');
+        };
+
+        window.updateQuoteStatus = function(id, status) {
+            const idx = quotes.findIndex(q => q.id === id);
+            if (idx > -1) {
+                quotes[idx].status = status;
+                localStorage.setItem('mktech_quotes', JSON.stringify(quotes));
+                renderQuotesTable('quotesTable', quotes);
+                renderQuotesTable('allQuotesTable', quotes);
+                document.getElementById('totalQuotes').textContent = quotes.length;
+                document.getElementById('pendingQuotes').textContent = quotes.filter(q => q.status === 'pending').length;
+            }
+        };
+
+        window.scrollToSection = function(sectionId) {
+            switchTab('overview');
+            setTimeout(() => {
+                const el = document.getElementById(sectionId);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        };
+
+        window.filterQuotesByStatus = function(status) {
+            switchTab('quotes');
+            const filtered = quotes.filter(q => q.status === status);
+            renderQuotesTable('allQuotesTable', filtered);
+        };
+
+        renderQuotesTable('quotesTable', quotes);
+        renderQuotesTable('allQuotesTable', quotes);
+
+        // Admin sidebar nav
+        document.querySelectorAll('.admin-nav a[data-nav]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const nav = link.dataset.nav;
+                switchTab(nav);
+                document.querySelectorAll('.admin-nav a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
             });
         });
 
-        // ===== Careers Management =====
-        const jobs = JSON.parse(localStorage.getItem('mktech_jobs') || '[]');
-        const applications = JSON.parse(localStorage.getItem('mktech_applications') || '[]');
-        let editingJobId = null;
+        function switchTab(tabName) {
+            document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+            const panelId = tabName + 'Panel';
+            const panel = document.getElementById(panelId);
+            if (panel) panel.classList.add('active');
 
+            if (tabName === 'users') renderUsersTable();
+            if (tabName === 'careers') {
+                renderAdminJobs();
+                renderApplications();
+            }
+            if (tabName === 'quotes') renderQuotesTable('allQuotesTable', quotes);
+        }
+
+        function renderUsersTable() {
+            const container = document.getElementById('usersTable');
+            if (users.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No users registered yet.</p>';
+                return;
+            }
+            container.innerHTML = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${users.map(u => `
+                            <tr>
+                                <td>${escapeHtml(u.name || '-')}</td>
+                                <td>${escapeHtml(u.email || '-')}</td>
+                                <td><span class="status-badge ${u.role === 'admin' ? 'status-approved' : 'status-pending'}">${u.role}</span></td>
+                                <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // ===== Careers Management =====
         function renderAdminJobs() {
             const container = document.getElementById('adminJobsList');
             const noJobs = document.getElementById('noAdminJobs');
@@ -320,17 +797,32 @@
             noJobs.style.display = 'none';
             container.innerHTML = jobs.map(job => `
                 <div class="job-item">
-                    <div>
-                        <h4>${escapeHtml(job.title)}</h4>
+                    <div style="flex: 1;">
+                        <h4>${escapeHtml(job.title)} ${job.active === false ? '<span style="color: var(--text-light); font-size: 0.85rem;">(Inactive)</span>' : ''}</h4>
                         <p><i class="fas fa-map-marker-alt"></i> ${escapeHtml(job.location)} | <i class="fas fa-briefcase"></i> ${escapeHtml(job.type)} | Posted ${new Date(job.postedDate).toLocaleDateString()}</p>
                     </div>
-                    <div class="job-actions">
-                        <button class="btn-sm btn-edit" onclick="window.editJob(${job.id})"><i class="fas fa-edit"></i> Edit</button>
-                        <button class="btn-sm btn-delete" onclick="window.deleteJob(${job.id})"><i class="fas fa-trash"></i></button>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <label class="toggle-switch" title="Toggle Active/Inactive">
+                            <input type="checkbox" ${job.active !== false ? 'checked' : ''} onchange="toggleJobStatus(${job.id})">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <div class="job-actions">
+                            <button class="btn-sm btn-edit" onclick="window.editJob(${job.id})"><i class="fas fa-edit"></i></button>
+                            <button class="btn-sm btn-delete" onclick="window.deleteJob(${job.id})"><i class="fas fa-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
+
+        window.toggleJobStatus = function(id) {
+            const idx = jobs.findIndex(j => j.id === id);
+            if (idx > -1) {
+                jobs[idx].active = !jobs[idx].active;
+                localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
+                renderAdminJobs();
+            }
+        };
 
         window.editJob = function(id) {
             const job = jobs.find(j => j.id === id);
@@ -344,7 +836,11 @@
             document.getElementById('jobRequirements').value = job.requirements ? job.requirements.join('\n') : '';
             document.getElementById('jobFormBtn').textContent = 'Update Job';
             document.getElementById('cancelEdit').style.display = 'inline-block';
-            switchTab('addJob');
+            switchTab('careers');
+            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.careers-tab[data-tab="addJob"]').classList.add('active');
+            document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('addJobPanel').classList.add('active');
         };
 
         window.deleteJob = function(id) {
@@ -382,13 +878,18 @@
                     type,
                     description,
                     requirements,
-                    postedDate: new Date().toISOString()
+                    postedDate: new Date().toISOString(),
+                    active: true
                 });
             }
             localStorage.setItem('mktech_jobs', JSON.stringify(jobs));
             document.getElementById('jobForm').reset();
             renderAdminJobs();
-            switchTab('viewJobs');
+            switchTab('careers');
+            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.careers-tab[data-tab="viewJobs"]').classList.add('active');
+            document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('viewJobsPanel').classList.add('active');
         });
 
         document.getElementById('cancelEdit').addEventListener('click', () => {
@@ -396,7 +897,11 @@
             document.getElementById('jobForm').reset();
             document.getElementById('jobFormBtn').textContent = 'Save Job';
             document.getElementById('cancelEdit').style.display = 'none';
-            switchTab('viewJobs');
+            switchTab('careers');
+            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.careers-tab[data-tab="viewJobs"]').classList.add('active');
+            document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('viewJobsPanel').classList.add('active');
         });
 
         function renderApplications() {
@@ -411,26 +916,44 @@
             container.innerHTML = applications.slice().reverse().map(app => `
                 <div class="app-item">
                     <strong>${escapeHtml(app.name)}</strong> <span style="color: var(--text-light);">applied for</span> <strong style="color: var(--primary-teal);">${escapeHtml(app.position)}</strong>
-                    <p><i class="fas fa-envelope"></i> ${escapeHtml(app.email)} | <i class="fas fa-paperclip"></i> ${app.fileName ? escapeHtml(app.fileName) : 'No CV attached'}</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:${escapeHtml(app.email)}">${escapeHtml(app.email)}</a> | <i class="fas fa-paperclip"></i> ${app.fileName ? escapeHtml(app.fileName) : 'No CV attached'}</p>
                     <p style="font-size: 0.8rem; margin-top: 0.25rem;"><i class="fas fa-clock"></i> ${new Date(app.submittedAt).toLocaleString()}</p>
                 </div>
             `).join('');
         }
 
-        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+            const panelId = tabName + 'Panel';
+            const panel = document.getElementById(panelId);
+            if (panel) panel.classList.add('active');
+
+            if (tabName === 'overview') {
+                renderQuotesTable('quotesTable', quotes.slice(0, 5));
+            }
+            if (tabName === 'quotes') {
+                renderQuotesTable('allQuotesTable', quotes);
+            }
+            if (tabName === 'careers') {
+                renderAdminJobs();
+                renderApplications();
+            }
+            if (tabName === 'users') {
+                renderUsersTable();
+            }
+        }
+
         document.querySelectorAll('.careers-tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                switchTab(tab.dataset.tab);
+                switchTab('careers');
+                document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
+                const panelId = tab.dataset.tab === 'viewJobs' ? 'viewJobsPanel' : tab.dataset.tab === 'addJob' ? 'addJobPanel' : 'viewApplicationsPanel';
+                document.getElementById(panelId).classList.add('active');
+                if (tab.dataset.tab === 'viewApplications') renderApplications();
             });
         });
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(`.careers-tab[data-tab="${tabName}"]`).classList.add('active');
-            document.querySelectorAll('.careers-panel').forEach(p => p.style.display = 'none');
-            document.getElementById(tabName === 'viewJobs' ? 'viewJobsPanel' : tabName === 'addJob' ? 'addJobPanel' : 'viewApplicationsPanel').style.display = 'block';
-            if (tabName === 'viewApplications') renderApplications();
-        }
 
         function escapeHtml(text) {
             const div = document.createElement('div');
@@ -438,13 +961,14 @@
             return div.innerHTML;
         }
 
-        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+        document.getElementById('sidebarLogoutBtn').addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('mktech_current_user');
             window.location.href = '/';
         });
 
         // Init
+        renderQuotesTable('quotesTable', quotes.slice(0, 5));
         renderAdminJobs();
     </script>
 

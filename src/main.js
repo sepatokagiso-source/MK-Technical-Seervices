@@ -168,7 +168,19 @@ class FormValidator {
 
     submitForm(data) {
         console.log('Form submitted:', data);
-        // Here you would send to your backend
+        if (this.form.id === 'contact-form' || this.form.id === 'quote-form') {
+            const quoteSystem = window.MKTech?.quotes;
+            if (quoteSystem) {
+                quoteSystem.createQuote({
+                    name: data.name || '',
+                    email: data.email || '',
+                    phone: data.phone || '',
+                    service: data.service || 'General',
+                    message: data.message || '',
+                    source: this.form.id
+                });
+            }
+        }
         this.showSuccess();
     }
 

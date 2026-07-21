@@ -361,12 +361,12 @@
             tab.addEventListener('click', () => switchTab(tab.dataset.careersTab));
         });
 
-        document.querySelectorAll('.apply-tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const position = btn.dataset.position;
-                document.getElementById('careersPosition').value = position;
-                switchTab('apply');
-            });
+        document.body.addEventListener('click', (e) => {
+            const btn = e.target.closest('.apply-tab-btn');
+            if (!btn) return;
+            const position = btn.dataset.position;
+            document.getElementById('careersPosition').value = position;
+            switchTab('apply');
         });
 
         const alertDiv = document.getElementById('careersAlert');

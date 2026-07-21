@@ -228,21 +228,34 @@ class Auth {
         return { success: true, user: newUser };
     }
 
-    createDefaultAdmin() {
+    async createDefaultAdmin() {
         const users = JSON.parse(localStorage.getItem('mktech_users') || '[]');
         const adminExists = users.find(u => u.email === 'admin@mktechnicalservices.co.za');
         if (!adminExists) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode('Cucaracha123');
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashedPassword = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
             const defaultAdmin = {
                 id: 1,
                 name: 'Admin',
                 email: 'admin@mktechnicalservices.co.za',
-                password: 'Cucaracha123',
+                password: hashedPassword,
                 role: 'admin',
                 createdAt: new Date().toISOString()
             };
             users.push(defaultAdmin);
             localStorage.setItem('mktech_users', JSON.stringify(users));
             console.log('Default admin account created: admin@mktechnicalservices.co.za / Cucaracha123');
+        } else if (adminExists.password && adminExists.password.length !== 64) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode('Cucaracha123');
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashedPassword = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+            const idx = users.findIndex(u => u.email === 'admin@mktechnicalservices.co.za');
+            users[idx].password = hashedPassword;
+            localStorage.setItem('mktech_users', JSON.stringify(users));
+            console.log('Admin password rehashed for compatibility');
         }
     }
 
@@ -947,7 +960,7 @@ class UploadZone {
 }
 
 // ===== Initialize on DOM Load =====
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Initialize navigation
     new Navigation();
 
@@ -981,7 +994,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Create default admin if not exists
-    window.MKTech.auth.createDefaultAdmin();
+    await window.MKTech.auth.createDefaultAdmin();
 
     // Click-to-call functionality
     document.querySelectorAll('[data-call]').forEach(btn => {

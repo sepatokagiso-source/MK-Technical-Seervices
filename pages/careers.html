@@ -24,6 +24,49 @@
         rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .careers-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid var(--border-subtle);
+            justify-content: center;
+        }
+        .careers-tab {
+            padding: 0.85rem 2rem;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .careers-tab:hover {
+            color: var(--text-dark);
+        }
+        .careers-tab.active {
+            color: var(--primary-teal);
+            border-bottom-color: var(--primary-teal);
+        }
+        .careers-panel {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+        .careers-panel.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body>
@@ -84,9 +127,6 @@
                 <p style="font-size: 1.25rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 2rem;">
                     Join a team of passionate professionals delivering excellence in HVAC, Electrical, Fire Safety and Construction across South Africa. Grow your career with a Level 1 BBBEE contributor.
                 </p>
-                <a href="#openings" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">
-                    <i class="fas fa-briefcase"></i> View Open Positions
-                </a>
             </div>
         </div>
     </section>
@@ -160,58 +200,57 @@
         </div>
     </section>
 
-    <!-- Job Openings -->
+    <!-- Careers Tabs -->
     <section id="openings" class="section" style="background: var(--bg-light);">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="reveal">Current Openings</h2>
-                <p class="reveal" style="color: var(--text-secondary);">Explore available positions and find your place in our team.</p>
+            <div class="careers-tabs">
+                <button class="careers-tab active" data-careers-tab="openings">Current Openings</button>
+                <button class="careers-tab" data-careers-tab="apply">Apply Now</button>
             </div>
-            <div id="jobsContainer" class="grid grid-1" style="max-width: 900px; margin: 0 auto; gap: 1.5rem;">
-                <!-- Jobs injected dynamically -->
-            </div>
-            <p id="noJobs" class="text-center reveal" style="color: var(--text-secondary); padding: 3rem 0; display: none;">
-                <i class="fas fa-briefcase" style="font-size: 3rem; margin-bottom: 1rem; display: block; opacity: 0.4;"></i>
-                No positions currently open. Please check back soon or send your CV to <a href="mailto:info@mktechnicalservices.co.za" style="color: var(--primary-teal);">info@mktechnicalservices.co.za</a>.
-            </p>
-        </div>
-    </section>
 
-    <!-- Application Form -->
-    <section id="apply" class="section">
-        <div class="container">
-            <div style="max-width: 700px; margin: 0 auto;">
-                <div class="text-center mb-5">
-                    <h2 class="reveal">Apply Now</h2>
-                    <p class="reveal" style="color: var(--text-secondary);">
-                        Interested in joining our team? Submit your details and CV below.
-                    </p>
+            <div id="openingsPanel" class="careers-panel active">
+                <div id="jobsContainer" class="grid grid-1" style="max-width: 900px; margin: 0 auto; gap: 1.5rem;">
                 </div>
-                <div class="card reveal" style="padding: 2.5rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
-                    <form id="careersForm">
-                        <div class="grid grid-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
-                            <div>
-                                <label for="careersName" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Full Name</label>
-                                <input type="text" id="careersName" name="name" required placeholder="John Doe" style="width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 1rem; transition: border-color 0.3s;">
+                <p id="noJobs" class="text-center reveal" style="color: var(--text-secondary); padding: 3rem 0; display: none;">
+                    <i class="fas fa-briefcase" style="font-size: 3rem; margin-bottom: 1rem; display: block; opacity: 0.4;"></i>
+                    No positions currently open. Please check back soon or send your CV to <a href="mailto:info@mktechnicalservices.co.za" style="color: var(--primary-teal);">info@mktechnicalservices.co.za</a>.
+                </p>
+            </div>
+
+            <div id="applyPanel" class="careers-panel">
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <div class="text-center mb-5">
+                        <h2 class="reveal">Apply Now</h2>
+                        <p class="reveal" style="color: var(--text-secondary);">
+                            Interested in joining our team? Submit your details and CV below.
+                        </p>
+                    </div>
+                    <div class="card reveal" style="padding: 2.5rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+                        <form id="careersForm">
+                            <div class="grid grid-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div>
+                                    <label for="careersName" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Full Name</label>
+                                    <input type="text" id="careersName" name="name" required placeholder="John Doe" style="width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 1rem; transition: border-color 0.3s;">
+                                </div>
+                                <div>
+                                    <label for="careersEmail" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Email Address</label>
+                                    <input type="email" id="careersEmail" name="email" required placeholder="your@email.com" style="width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 1rem; transition: border-color 0.3s;">
+                                </div>
                             </div>
-                            <div>
-                                <label for="careersEmail" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Email Address</label>
-                                <input type="email" id="careersEmail" name="email" required placeholder="your@email.com" style="width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 1rem; transition: border-color 0.3s;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <label for="careersPosition" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Position Applying For</label>
+                                <input type="text" id="careersPosition" name="position" placeholder="e.g. Electrician / HVAC Technician" style="width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 1rem; transition: border-color 0.3s;">
                             </div>
-                        </div>
-                        <div style="margin-bottom: 1.5rem;">
-                            <label for="careersPosition" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Position Applying For</label>
-                            <input type="text" id="careersPosition" name="position" placeholder="e.g. Electrician / HVAC Technician" style="width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 1rem; transition: border-color 0.3s;">
-                        </div>
-                        <div style="margin-bottom: 2rem;">
-                            <label for="careersCV" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Upload CV / Resume</label>
-                            <input type="file" id="careersCV" name="cv" accept=".pdf,.doc,.docx" style="width: 100%; padding: 0.75rem; border: 2px dashed var(--border-subtle); border-radius: var(--radius-md); background: var(--bg-light); cursor: pointer;">
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem; font-size: 1.05rem; font-weight: 700;">
-                            <i class="fas fa-paper-plane"></i> Submit Application
-                        </button>
-                    </form>
-                    <div id="careersAlert" style="margin-top: 1.5rem; padding: 1rem; border-radius: var(--radius-md); display: none;"></div>
+                            <div style="margin-bottom: 2rem;">
+                                <label for="careersCV" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem;">Upload CV / Resume</label>
+                                <input type="file" id="careersCV" name="cv" accept=".pdf,.doc,.docx" style="width: 100%; padding: 0.75rem; border: 2px dashed var(--border-subtle); border-radius: var(--radius-md); background: var(--bg-light); cursor: pointer;">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem; font-size: 1.05rem; font-weight: 700;">
+                                <i class="fas fa-paper-plane"></i> Submit Application
+                            </button>
+                        </form>
+                        <div id="careersAlert" style="margin-top: 1.5rem; padding: 1rem; border-radius: var(--radius-md); display: none;"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -269,7 +308,6 @@
 
     <script type="module" src="/src/main.js"></script>
     <script type="module">
-        // Load jobs from localStorage
         const jobs = JSON.parse(localStorage.getItem('mktech_jobs') || '[]');
         const container = document.getElementById('jobsContainer');
         const noJobs = document.getElementById('noJobs');
@@ -293,9 +331,9 @@
                                 <span><i class="fas fa-calendar"></i> Posted ${new Date(job.postedDate).toLocaleDateString()}</span>
                             </div>
                         </div>
-                        <a href="#apply" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.75rem 1.5rem; white-space: nowrap;">
+                        <button class="btn btn-primary apply-tab-btn" style="font-size: 0.9rem; padding: 0.75rem 1.5rem; white-space: nowrap;" data-position="${escapeHtml(job.title)}">
                             Apply Now
-                        </a>
+                        </button>
                     </div>
                     <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
                         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">${escapeHtml(job.description)}</p>
@@ -311,7 +349,26 @@
             return div.innerHTML;
         }
 
-        // Careers form submission
+        function switchTab(tabName) {
+            document.querySelectorAll('.careers-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.careers-panel').forEach(p => p.classList.remove('active'));
+            document.querySelector(`.careers-tab[data-careers-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(tabName + 'Panel').classList.add('active');
+            window.scrollTo({ top: document.getElementById('openings').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('.careers-tab').forEach(tab => {
+            tab.addEventListener('click', () => switchTab(tab.dataset.careersTab));
+        });
+
+        document.querySelectorAll('.apply-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const position = btn.dataset.position;
+                document.getElementById('careersPosition').value = position;
+                switchTab('apply');
+            });
+        });
+
         const alertDiv = document.getElementById('careersAlert');
         document.getElementById('careersForm').addEventListener('submit', (e) => {
             e.preventDefault();

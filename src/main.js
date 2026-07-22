@@ -114,6 +114,18 @@ class FormValidator {
 
     init() {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        const modal = document.getElementById('thankYouModal');
+        const okBtn = document.getElementById('thankYouOkBtn');
+        const closeBtn = document.getElementById('thankYouCloseBtn');
+        if (modal && okBtn) {
+            this.showThankYouModal = () => {
+                modal.style.display = 'flex';
+                const hide = () => { modal.style.display = 'none'; okBtn.removeEventListener('click', hide); closeBtn.removeEventListener('click', hide); };
+                okBtn.addEventListener('click', hide);
+                closeBtn.addEventListener('click', hide);
+                modal.addEventListener('click', (e) => { if (e.target === modal) hide(); });
+            };
+        }
     }
 
     handleSubmit(e) {
@@ -182,6 +194,7 @@ class FormValidator {
             }
         }
         this.showSuccess();
+        this.showThankYouModal?.();
     }
 
     showSuccess() {

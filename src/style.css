@@ -523,6 +523,30 @@ img {
     border-color: rgba(255, 255, 255, 0.4);
 }
 
+.header-login {
+    background: #FFFFFF;
+    color: #0A0F18;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.6rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.header-login:hover {
+    background: transparent;
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
 .site-header .hamburger {
     display: none;
     flex-direction: column;
@@ -4101,9 +4125,11 @@ footer {
 /* ===== Contact Split Section ===== */
 .contact-split {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--spacing-xl);
     align-items: start;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .contact-panel {

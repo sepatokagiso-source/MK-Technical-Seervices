@@ -24,6 +24,12 @@
         rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body>
@@ -144,6 +150,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.85); z-index: 10000; padding: 2rem; overflow-y: auto; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: white; border-radius: 16px; max-width: 500px; width: 100%; padding: 2.5rem; position: relative; animation: slideUp 0.4s ease; text-align: center;">
+            <button class="modal-close" id="thankYouCloseBtn" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 1.75rem; cursor: pointer; color: #64748B;">&times;</button>
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #00B8D9, #0052FF); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.5rem; color: white;">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 style="margin-bottom: 1rem; color: #0F1B2E; font-size: 1.75rem; font-weight: 800;">Thank You!</h2>
+            <p style="color: #64748B; font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">Your quote request has been received. Our team will review your requirements and get back to you within 24 hours.</p>
+            <button id="thankYouOkBtn" class="btn btn-primary" style="padding: 0.9rem 2.5rem; font-weight: 700; font-size: 1rem; border-radius: 10px; cursor: pointer; border: none; color: white; background: linear-gradient(135deg, #00B8D9, #0052FF);">OK</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>

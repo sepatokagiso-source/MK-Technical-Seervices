@@ -1022,9 +1022,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
-    // Dark Mode
-    new DarkMode();
-
     // Stats Counter
     new StatsCounter();
 
@@ -1037,33 +1034,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Hover Glow
     new HoverGlow();
 });
-
-// ===== Dark Mode =====
-class DarkMode {
-    constructor() {
-        this.toggle = document.querySelector('.dark-mode-toggle');
-        this.body = document.body;
-        this.storageKey = 'mktech_theme';
-        this.init();
-    }
-
-    init() {
-        const saved = localStorage.getItem(this.storageKey);
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (saved === 'dark' || (!saved && prefersDark)) {
-            this.body.classList.add('dark-mode');
-        }
-
-        if (this.toggle) {
-            this.toggle.addEventListener('click', () => this.toggleTheme());
-        }
-    }
-
-    toggleTheme() {
-        this.body.classList.toggle('dark-mode');
-        localStorage.setItem(this.storageKey, this.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    }
-}
 
 // ===== Stats Counter =====
 class StatsCounter {
@@ -1211,4 +1181,4 @@ class HoverGlow {
 }
 
 // Export for use in other modules
-export { Navigation, ScrollReveal, FormValidator, Auth, QuoteSystem, DarkMode, StatsCounter, Parallax, HoverGlow, ServiceSlider, OrbitServices, Hero3D, MarqueeSlider, MetricsCounter, UploadZone };
+export { Navigation, ScrollReveal, FormValidator, Auth, QuoteSystem, StatsCounter, Parallax, HoverGlow, ServiceSlider, OrbitServices, Hero3D, MarqueeSlider, MetricsCounter, UploadZone };

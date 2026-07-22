@@ -541,33 +541,7 @@ img {
     transition: var(--transition-base);
 }
 
-.dark-mode-toggle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    background: none;
-    color: #FFFFFF;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-}
 
-.dark-mode-toggle:hover {
-    border-color: var(--accent-cyan);
-    color: var(--accent-cyan);
-    box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
-}
-
-.dark-mode-toggle .icon-sun { display: none; }
-.dark-mode-toggle .icon-moon { display: inline; }
-
-.dark-mode .dark-mode-toggle .icon-sun { display: inline; }
-.dark-mode .dark-mode-toggle .icon-moon { display: none; }
 
 @media (max-width: 1024px) {
     .nav-menu {
